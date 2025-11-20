@@ -1,11 +1,11 @@
 <template>
   <view class="home">
     <view class="top-bar">
-      <text class="logo">分类</text>
+      <text class="logo" @click="toCategory">分类</text>
       <u-search v-model="keyword" placeholder="搜索药膳食材/养生方案" :show-action="false" shape="round" bgColor="#FDF6E3" />
       <view class="top-actions">
-        <text>我的</text>
-        <text>客服</text>
+        <text class="link" @click="toProfile">我的</text>
+        <text class="link" @click="toService">客服</text>
       </view>
     </view>
 
@@ -36,6 +36,14 @@ const keyword = ref('')
 const currentTab = ref(0)
 const onTabChange = (e) => {
   currentTab.value = typeof e === 'number' ? e : e.index
+}
+const toCategory = () => uni.switchTab({ url: '/pages/category/index' })
+const toProfile = () => uni.switchTab({ url: '/pages/profile/index' })
+const toService = () => {
+  uni.showActionSheet({ itemList: ['在线客服', '拨打电话 400-123-456'], success(res){
+    if (res.tapIndex === 0) uni.navigateTo({ url: '/pages/profile/index' })
+    if (res.tapIndex === 1) uni.makePhoneCall({ phoneNumber: '400123456' })
+  } })
 }
 const tabs = ref([
   { name: '补气养血' },
@@ -69,6 +77,7 @@ const goods = ref(goodsList)
   align-items: center;
   gap: 12rpx;
 }
+.link { color: $color-primary; }
 .category-tabs {
   margin: 20rpx 0;
 }

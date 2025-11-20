@@ -1,13 +1,14 @@
 <template>
   <view class="vip-page">
-    <view class="card">
-      <text class="tier">VIP {{ user.vipLevel }}</text>
-      <text class="name">{{ user.name }}</text>
-      <view class="stats">
-        <view class="stat"><text>积分</text><text class="num">{{ user.points }}</text></view>
-        <view class="stat"><text>体质</text><text class="num">{{ user.constitution }}</text></view>
-      </view>
+  <view class="card">
+    <text class="tier">VIP {{ user.vipLevel }}</text>
+    <text class="name">{{ user.name }}</text>
+    <text class="valid">有效期：2026-12-31</text>
+    <view class="stats">
+      <view class="stat"><text>积分</text><text class="num">{{ user.points }}</text></view>
+      <view class="stat"><text>体质</text><text class="num">{{ user.constitution }}</text></view>
     </view>
+  </view>
     <SectionHeader title="会员权益" />
     <view class="benefits">
       <view class="benefit"><text>专属折扣</text><u-tag text="9折" type="success" plain /></view>
@@ -36,6 +37,7 @@ import { userInfo as user } from '../../mock/user.js'
 }
 .tier { font-size: 32rpx; font-weight: 700; }
 .name { font-size: 28rpx; }
+.valid { opacity: 0.9; }
 .stats { display: flex; gap: 20rpx; }
 .stat { display: flex; align-items: baseline; gap: 8rpx; }
 .num { font-size: 32rpx; font-weight: 700; }

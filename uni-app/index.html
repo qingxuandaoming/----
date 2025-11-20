@@ -7,6 +7,23 @@
   </head>
   <body>
     <div id="app"></div>
+    <script>
+      window.uni = window.uni || {}
+      if (!('getSystemInfoSync' in uni)) {
+        uni.getSystemInfoSync = function(){ return { system: 'H5' } }
+      }
+      if (typeof uni.getLocale !== 'function') {
+        uni.getLocale = function(){ return 'zh-CN' }
+      }
+      if (typeof uni.onLocaleChange !== 'function') {
+        uni.onLocaleChange = function(){ /* noop */ }
+      }
+      if (typeof uni.requireNativePlugin !== 'function') {
+        uni.requireNativePlugin = function(){
+          return new Proxy({}, { get(){ return function(){ return null } } })
+        }
+      }
+    </script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

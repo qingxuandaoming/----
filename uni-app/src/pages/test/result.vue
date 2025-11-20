@@ -45,6 +45,18 @@
         <text class="num">{{ records }}</text>
       </view>
     </view>
+
+    <SectionHeader title="饮食时间轴" />
+    <view class="timeline">
+      <view class="t-item" v-for="(r,i) in timeline" :key="i">
+        <text class="t-time">{{ r.time }}</text>
+        <view class="t-line"><view class="t-dot"></view></view>
+        <view class="t-content">
+          <text class="t-meal">{{ r.meal }}</text>
+          <text class="t-eff">{{ r.effect }}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -68,6 +80,13 @@ const trendSeries = ref([
   { name: '睡眠质量', color: '#D4AF37', data: [70, 72, 68, 75, 78, 74, 76] }
 ])
 const records = ref(12)
+
+const timeline = ref([
+  { time: '08:00', meal: '早餐：红枣燕麦粥', effect: '补气养血、健脾和胃' },
+  { time: '12:30', meal: '午餐：滋阴润燥汤', effect: '滋阴润肺、润燥生津' },
+  { time: '15:00', meal: '加餐：百合银耳羹', effect: '清热润燥、宁心安神' },
+  { time: '19:00', meal: '晚餐：黄芪党参乌鸡汤', effect: '补气固表、益气健脾' }
+])
 
 const size = 220
 const center = size / 2
@@ -97,4 +116,13 @@ const arcs = computed(() => {
 .overview { display: flex; gap: 16rpx; }
 .card { flex: 1; background-color: $color-card-bg; border-radius: $radius-card; padding: 20rpx; display: flex; justify-content: space-between; align-items: center; }
 .num { font-size: 36rpx; color: $text-primary; font-weight: 700; }
+.timeline { display: flex; flex-direction: column; gap: 16rpx; margin-top: 8rpx; }
+.t-item { display: grid; grid-template-columns: 120rpx 40rpx 1fr; align-items: start; gap: 12rpx; }
+.t-time { color: $text-secondary; }
+.t-line { position: relative; width: 40rpx; }
+.t-line::after { content: ''; position: absolute; left: 19rpx; top: 0; bottom: 0; width: 2rpx; background: #e5e5e5; }
+.t-dot { position: absolute; left: 14rpx; top: 4rpx; width: 12rpx; height: 12rpx; border-radius: 50%; background: $color-secondary; }
+.t-content { background-color: $color-card-bg; border-radius: $radius-card; padding: 14rpx; display: flex; flex-direction: column; gap: 6rpx; }
+.t-meal { color: $text-primary; font-weight: 600; }
+.t-eff { color: $text-secondary; }
 </style>

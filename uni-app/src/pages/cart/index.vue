@@ -36,7 +36,7 @@
         <text>合计：</text>
         <text class="total">¥{{ totalAmount.toFixed(2) }}</text>
       </view>
-      <u-button shape="circle" type="primary" :plain="true">去结算</u-button>
+      <u-button shape="circle" type="primary" :plain="true" @click="checkout">去结算</u-button>
     </view>
   </view>
 </template>
@@ -69,6 +69,10 @@ const dec = (item) => { if (item.quantity > 1) item.quantity-- }
 const totalAmount = computed(() => {
   return cart.value.reduce((sum, i) => sum + i.price * i.quantity, 0)
 })
+
+const checkout = () => {
+  uni.showModal({ title: '去结算', content: `合计 ¥${totalAmount.value.toFixed(2)}`, confirmText: '确认', success(res){ if (res.confirm) uni.switchTab({ url: '/pages/profile/index' }) } })
+}
 </script>
 
 <style lang="scss" scoped>

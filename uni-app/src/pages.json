@@ -10,6 +10,24 @@
       }
     },
     {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
       "path": "pages/points/index",
       "style": {
         "navigationBarTitleText": "积分商城",
@@ -28,6 +46,15 @@
       }
     },
     {
+      "path": "pages/test/index",
+      "style": {
+        "navigationBarTitleText": "体质测试",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
       "path": "pages/goods/detail",
       "style": {
         "navigationBarTitleText": "商品详情",
@@ -40,6 +67,15 @@
       "path": "pages/test/result",
       "style": {
         "navigationBarTitleText": "体质测试",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/test/tongue",
+      "style": {
+        "navigationBarTitleText": "舌苔检测",
         "navigationBarBackgroundColor": "#FDF6E3",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#FDF6E3"
@@ -93,23 +129,33 @@
     "list": [
       {
         "text": "首页",
-        "pagePath": "pages/index/index"
+        "pagePath": "pages/index/index",
+        "iconPath": "https://img.icons8.com/ios-glyphs/48/home.png",
+        "selectedIconPath": "https://img.icons8.com/fluency/48/home.png"
       },
       {
         "text": "分类",
-        "pagePath": "pages/category/index"
+        "pagePath": "pages/category/index",
+        "iconPath": "https://img.icons8.com/ios-glyphs/48/grid.png",
+        "selectedIconPath": "https://img.icons8.com/fluency/48/grid.png"
       },
       {
         "text": "测试",
-        "pagePath": "pages/test/result"
+        "pagePath": "pages/test/index",
+        "iconPath": "https://img.icons8.com/ios-glyphs/48/heart-with-pulse.png",
+        "selectedIconPath": "https://img.icons8.com/fluency/48/heart-with-pulse.png"
       },
       {
         "text": "购物车",
-        "pagePath": "pages/cart/index"
+        "pagePath": "pages/cart/index",
+        "iconPath": "https://img.icons8.com/ios-glyphs/48/shopping-cart.png",
+        "selectedIconPath": "https://img.icons8.com/fluency/48/shopping-cart.png"
       },
       {
         "text": "我的",
-        "pagePath": "pages/profile/index"
+        "pagePath": "pages/profile/index",
+        "iconPath": "https://img.icons8.com/ios-glyphs/48/user.png",
+        "selectedIconPath": "https://img.icons8.com/fluency/48/user.png"
       }
     ]
   }

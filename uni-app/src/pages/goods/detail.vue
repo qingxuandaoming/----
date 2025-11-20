@@ -6,9 +6,18 @@
       <text class="desc">{{ item?.desc || '营养均衡' }}</text>
       <view class="row">
         <text class="price">¥{{ (item?.price || 0).toFixed(2) }}</text>
-        <u-number-box v-model="quantity" :min="1" :max="99" integer />
+        <text class="sold">月销 {{ item?.sales || 0 }}</text>
       </view>
-      <u-button type="primary" shape="circle">加入购物车</u-button>
+      <view class="shop">
+        <text>店铺：本草养生馆</text>
+      </view>
+    </view>
+    <view class="bottom-bar">
+      <u-number-box v-model="quantity" :min="1" :max="99" integer />
+      <view class="btns">
+        <u-button shape="circle" plain @click="onAddCart">加入购物车</u-button>
+        <u-button type="primary" shape="circle" @click="onBuyNow">立即购买</u-button>
+      </view>
     </view>
     <SectionHeader title="Ingredients" />
     <view class="ingredients" v-if="item?.ingredients?.length">
@@ -36,17 +45,28 @@ onLoad((query) => {
   item.value = found
   images.value = [{ image: found.image }]
 })
+
+const onAddCart = () => {
+  uni.showToast({ title: '已加入购物车', icon: 'none' })
+}
+const onBuyNow = () => {
+  uni.switchTab({ url: '/pages/cart/index' })
+}
 </script>
 
 <style lang="scss" scoped>
-.detail-page { padding: 24rpx; display: flex; flex-direction: column; gap: 20rpx; }
+.detail-page { padding: 24rpx; padding-bottom: 160rpx; display: flex; flex-direction: column; gap: 20rpx; }
 .basic { display: flex; flex-direction: column; gap: 12rpx; background-color: $color-card-bg; border-radius: $radius-card; padding: 16rpx; }
 .name { font-size: 34rpx; color: $text-primary; font-weight: 700; }
 .desc { color: $text-secondary; }
 .row { display: flex; justify-content: space-between; align-items: center; }
 .price { color: $text-danger; font-size: 32rpx; font-weight: 600; }
+.sold { color: $text-secondary; }
+.shop { color: $text-secondary; }
 .ingredients { display: flex; flex-direction: column; gap: 12rpx; }
 .ing { display: flex; justify-content: space-between; background-color: $color-card-bg; border-radius: $radius-card; padding: 16rpx; }
 .ing-name { color: $text-primary; }
 .ing-eff { color: $text-secondary; }
+.bottom-bar { position: fixed; left: 0; right: 0; bottom: 0; background-color: $color-card-bg; padding: 16rpx 24rpx; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -6rpx 20rpx rgba(0,0,0,0.06); }
+.btns { display: flex; gap: 12rpx; }
 </style>
