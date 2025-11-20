@@ -1,0 +1,30 @@
+$color-primary: #8B5A2B;
+$color-secondary: #D4AF37;
+$color-bg: #FDF6E3;
+$color-card-bg: #FFFFFF;
+$text-primary: #333333;
+$text-secondary: #666666;
+$text-tertiary: #999999;
+$text-danger: #C0392B;
+
+$radius-sm: 8rpx;
+$radius-card: 20rpx;
+$radius-button: 40rpx;
+
+$font-base: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+$font-title: 'Songti SC', serif;
+
+body {
+  background-color: $color-bg;
+  color: $text-primary;
+  font-family: $font-base;
+}
+
+.capsule-button {
+  border-radius: $radius-button;
+}
+
+.card {
+  background-color: $color-card-bg;
+  border-radius: $radius-card;
+}

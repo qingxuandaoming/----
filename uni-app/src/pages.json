@@ -1,0 +1,88 @@
+{ 
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/category/index",
+      "style": {
+        "navigationBarTitleText": "分类",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/test/result",
+      "style": {
+        "navigationBarTitleText": "体质测试",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/cart/index",
+      "style": {
+        "navigationBarTitleText": "购物车",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/profile/index",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    }
+  ],
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^u-(.*)": "uview-plus/components/u-$1/u-$1.vue"
+    }
+  },
+  "globalStyle": {
+    "backgroundColor": "#FDF6E3",
+    "navigationBarBackgroundColor": "#FDF6E3",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#8B5A2B",
+    "backgroundColor": "#FDF6E3",
+    "borderStyle": "black",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index"
+      },
+      {
+        "text": "分类",
+        "pagePath": "pages/category/index"
+      },
+      {
+        "text": "测试",
+        "pagePath": "pages/test/result"
+      },
+      {
+        "text": "购物车",
+        "pagePath": "pages/cart/index"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/profile/index"
+      }
+    ]
+  }
+}
