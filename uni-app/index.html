@@ -19,9 +19,37 @@
       if (typeof uni.onLocaleChange !== 'function') {
         uni.onLocaleChange = function(){ /* noop */ }
       }
+      if (typeof uni.onWindowResize !== 'function') {
+        uni.onWindowResize = function(cb){
+          if (typeof cb === 'function' && typeof window !== 'undefined') {
+            window.addEventListener('resize', cb)
+          }
+        }
+      }
       if (typeof uni.requireNativePlugin !== 'function') {
         uni.requireNativePlugin = function(){
           return new Proxy({}, { get(){ return function(){ return null } } })
+        }
+      }
+      if (typeof uni.createSelectorQuery !== 'function') {
+        uni.createSelectorQuery = function(){
+          var ctx = null
+          var el = null
+          var els = null
+          var cbRect = null
+          return {
+            in: function(c){ ctx = c; return this },
+            select: function(selector){ el = document.querySelector(selector); return this },
+            selectAll: function(selector){ els = document.querySelectorAll(selector); return this },
+            boundingClientRect: function(cb){ cbRect = cb; return this },
+            exec: function(){
+              if (typeof cbRect === 'function') {
+                if (el) cbRect(el.getBoundingClientRect())
+                else if (els && els.length) cbRect(Array.from(els).map(function(e){ return e.getBoundingClientRect() }))
+                else cbRect(null)
+              }
+            }
+          }
         }
       }
       if (typeof uni.switchTab !== 'function') {
@@ -29,6 +57,12 @@
       }
       if (typeof uni.navigateTo !== 'function') {
         uni.navigateTo = function(opts){ if (opts && opts.url) location.hash = opts.url }
+      }
+      if (typeof uni.getWindowInfo !== 'function') {
+        uni.getWindowInfo = function(){
+          var w = typeof window !== 'undefined' ? window : { innerWidth: 375, innerHeight: 667, devicePixelRatio: 1 }
+          return { windowWidth: w.innerWidth, windowHeight: w.innerHeight, pixelRatio: w.devicePixelRatio || 1 }
+        }
       }
       if (typeof uni.showToast !== 'function') {
         uni.showToast = function(opts){ if (opts && opts.title) alert(opts.title) }
