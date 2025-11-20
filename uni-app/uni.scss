@@ -1,0 +1,22 @@
+$bg:#0b0f14;
+$surface:#0f141b;
+$card:#121820;
+$border:#1f2937;
+$text:#e5e7eb;
+$muted:#9aa4b2;
+$primary:#38bdf8;
+$accent:#4ade80;
+$danger:#f87171;
+$radius:16px;
+
+.page{background:$bg;min-height:100vh;padding:16px;color:$text}
+.card{background:$card;border:1px solid $border;border-radius:$radius;padding:16px}
+.row{display:flex;flex-direction:row;gap:14px}
+.grid{display:flex;flex-wrap:wrap}
+.title{color:$muted}
+.big{color:$text;font-size:36px;font-weight:800}
+.value{color:$text;font-weight:700}
+.muted{color:$muted}
+.chip{border-radius:999px;padding:6px 12px;background:$primary;color:#fff;font-weight:700}
+.progress{height:10px;background:$border;border-radius:999px;overflow:hidden;margin-top:10px}
+.progress-bar{height:100%;background:$accent}

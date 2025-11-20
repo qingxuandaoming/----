@@ -1,0 +1,25 @@
+{
+  "pages": [
+    { "path": "pages/dashboard/index", "style": { "navigationBarTitleText": "仪表盘" } },
+    { "path": "pages/hydration/index", "style": { "navigationBarTitleText": "饮水" } },
+    { "path": "pages/sleep/index", "style": { "navigationBarTitleText": "睡眠" } },
+    { "path": "pages/steps/index", "style": { "navigationBarTitleText": "步数" } },
+    { "path": "pages/weight/index", "style": { "navigationBarTitleText": "体重与BMI" } },
+    { "path": "pages/nutrition/index", "style": { "navigationBarTitleText": "饮食" } },
+    { "path": "pages/records/index", "style": { "navigationBarTitleText": "记录" } },
+    { "path": "pages/gallery/index", "style": { "navigationBarTitleText": "图片" } },
+    { "path": "pages/settings/index", "style": { "navigationBarTitleText": "设置" } }
+  ],
+  "tabBar": {
+    "color": "#9aa4b2",
+    "selectedColor": "#38bdf8",
+    "backgroundColor": "#0f141b",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/dashboard/index", "text": "仪表盘" },
+      { "pagePath": "pages/records/index", "text": "记录" },
+      { "pagePath": "pages/gallery/index", "text": "图片" },
+      { "pagePath": "pages/settings/index", "text": "设置" }
+    ]
+  }
+}

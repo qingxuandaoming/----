@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>健康管理</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">健康管理</div>
+    <div class="header-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="切换主题">🌓</button>
+    </div>
+  </header>
+  <nav class="tabs">
+    <button class="tab active" data-view="dashboard">仪表盘</button>
+    <button class="tab" data-view="log">记录</button>
+    <button class="tab" data-view="gallery">图片</button>
+    <button class="tab" data-view="settings">设置</button>
+  </nav>
+  <main class="views">
+    <section id="view-dashboard" class="view active">
+      <div class="cards">
+        <div class="card" id="card-water">
+          <div class="card-title">今日饮水</div>
+          <div class="card-value" id="waterValue">0/0 ml</div>
+          <div class="progress"><div id="waterProgress" class="progress-bar"></div></div>
+        </div>
+        <div class="card" id="card-sleep">
+          <div class="card-title">最近睡眠</div>
+          <div class="card-value" id="sleepValue">0 h</div>
+        </div>
+        <div class="card" id="card-steps">
+          <div class="card-title">今日步数</div>
+          <div class="card-value" id="stepsValue">0</div>
+        </div>
+        <div class="card" id="card-weight">
+          <div class="card-title">体重与BMI</div>
+          <div class="card-value" id="weightValue">-- kg</div>
+          <div class="card-sub" id="bmiValue">BMI: --</div>
+        </div>
+      </div>
+    </section>
+    <section id="view-log" class="view">
+      <div class="section">
+        <h2>饮水</h2>
+        <div class="row">
+          <label>目标(ml)</label>
+          <input id="waterTarget" type="number" min="0" step="50">
+          <button id="saveWaterTarget">保存目标</button>
+        </div>
+        <div class="row">
+          <label>补充(ml)</label>
+          <input id="waterAdd" type="number" min="0" step="50">
+          <button id="addWater">添加</button>
+          <div class="chips">
+            <button class="chip" data-water="250">+250</button>
+            <button class="chip" data-water="500">+500</button>
+            <button class="chip" data-water="750">+750</button>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h2>睡眠</h2>
+        <div class="row">
+          <button id="sleepStart">开始计时</button>
+          <button id="sleepStop">结束计时</button>
+          <span id="sleepTimer">未开始</span>
+        </div>
+        <div class="row">
+          <label>手动记录(小时)</label>
+          <input id="sleepHours" type="number" min="0" step="0.25">
+          <button id="addSleep">添加</button>
+        </div>
+      </div>
+      <div class="section">
+        <h2>步数</h2>
+        <div class="row">
+          <label>今日步数</label>
+          <input id="stepsCount" type="number" min="0">
+          <button id="addSteps">添加</button>
+          <div class="chips">
+            <button class="chip" data-steps="1000">+1000</button>
+            <button class="chip" data-steps="3000">+3000</button>
+            <button class="chip" data-steps="5000">+5000</button>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h2>体重</h2>
+        <div class="row">
+          <label>身高(cm)</label>
+          <input id="heightCm" type="number" min="0">
+          <button id="saveHeight">保存身高</button>
+        </div>
+        <div class="row">
+          <label>体重(kg)</label>
+          <input id="weightKg" type="number" min="0" step="0.1">
+          <button id="addWeight">添加</button>
+        </div>
+      </div>
+      <div class="section">
+        <h2>饮食</h2>
+        <div class="row">
+          <label>名称</label>
+          <input id="foodName" type="text">
+          <label>热量(kcal)</label>
+          <input id="foodCalories" type="number" min="0">
+          <button id="addFood">添加</button>
+        </div>
+        <div class="row">
+          <span id="foodTodayTotal">今日总热量: 0 kcal</span>
+        </div>
+      </div>
+    </section>
+    <section id="view-gallery" class="view">
+      <div class="gallery" id="gallery"></div>
+      <div class="lightbox" id="lightbox">
+        <img id="lightboxImg" alt="预览">
+        <button id="lightboxClose" class="icon-btn">关闭</button>
+      </div>
+    </section>
+    <section id="view-settings" class="view">
+      <div class="section">
+        <h2>主题</h2>
+        <div class="row">
+          <button id="setLight">浅色</button>
+          <button id="setDark">深色</button>
+        </div>
+      </div>
+      <div class="section">
+        <h2>数据</h2>
+        <div class="row">
+          <button id="exportData">导出JSON</button>
+          <input id="importFile" type="file" accept="application/json">
+          <button id="importData">导入JSON</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
