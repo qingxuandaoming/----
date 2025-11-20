@@ -1,6 +1,6 @@
 <template>
   <view class="login-page">
-    <image class="bg" src="/10.jpg" mode="aspectFill" />
+    <image class="bg" src="https://picsum.photos/seed/health/1200/800" mode="aspectFill" />
     <view class="mask"></view>
 
     <view class="content">

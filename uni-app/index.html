@@ -23,6 +23,34 @@
           return new Proxy({}, { get(){ return function(){ return null } } })
         }
       }
+      if (typeof uni.switchTab !== 'function') {
+        uni.switchTab = function(opts){ if (opts && opts.url) location.hash = opts.url }
+      }
+      if (typeof uni.navigateTo !== 'function') {
+        uni.navigateTo = function(opts){ if (opts && opts.url) location.hash = opts.url }
+      }
+      if (typeof uni.showToast !== 'function') {
+        uni.showToast = function(opts){ if (opts && opts.title) alert(opts.title) }
+      }
+      if (typeof uni.showActionSheet !== 'function') {
+        uni.showActionSheet = function(opts){
+          var list = (opts && opts.itemList) || []
+          var choice = prompt('选择: ' + list.join(' / '), list[0] || '')
+          var index = Math.max(0, list.indexOf(choice))
+          if (opts && typeof opts.success === 'function') opts.success({ tapIndex: index })
+        }
+      }
+      if (typeof uni.makePhoneCall !== 'function') {
+        uni.makePhoneCall = function(opts){ if (opts && opts.phoneNumber) location.href = 'tel:' + opts.phoneNumber }
+      }
+      if (typeof uni.chooseImage !== 'function') {
+        uni.chooseImage = function(opts){
+          var input = document.createElement('input'); input.type = 'file'; input.accept = 'image/*'; input.onchange = function(){
+            var file = input.files && input.files[0]; var url = file ? URL.createObjectURL(file) : ''
+            if (opts && typeof opts.success === 'function') opts.success({ tempFilePaths: [url] })
+          }; input.click()
+        }
+      }
     </script>
     <script type="module" src="/src/main.js"></script>
   </body>

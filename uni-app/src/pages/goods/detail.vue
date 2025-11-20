@@ -31,7 +31,6 @@
 
 <script setup>
 import { ref } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
 import SectionHeader from '../../components/SectionHeader.vue'
 import { goodsList } from '../../mock/goods.js'
 
@@ -39,12 +38,22 @@ const item = ref(null)
 const images = ref([])
 const quantity = ref(1)
 
-onLoad((query) => {
+const parseHashQuery = () => {
+  if (typeof location === 'undefined') return {}
+  const seg = (location.hash || '').split('?')[1] || ''
+  const usp = new URLSearchParams(seg)
+  const obj = {}
+  for (const [k, v] of usp.entries()) obj[k] = v
+  return obj
+}
+const init = () => {
+  const query = parseHashQuery()
   const id = Number(query.id || 1)
   const found = goodsList.find(g => g.id === id) || goodsList[0]
   item.value = found
   images.value = [{ image: found.image }]
-})
+}
+init()
 
 const onAddCart = () => {
   uni.showToast({ title: '已加入购物车', icon: 'none' })
