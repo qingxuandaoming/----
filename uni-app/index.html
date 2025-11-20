@@ -51,6 +51,23 @@
           }; input.click()
         }
       }
+      if (typeof uni.loadFontFace !== 'function') {
+        uni.loadFontFace = function(opts){
+          try {
+            var family = (opts && opts.family) || 'uicon-font'
+            var source = (opts && opts.source) || ''
+            var styleId = 'uni-fontface-style-' + family
+            var styleEl = document.getElementById(styleId)
+            if (!styleEl) { styleEl = document.createElement('style'); styleEl.id = styleId; document.head.appendChild(styleEl) }
+            styleEl.textContent = '@font-face{font-family:"' + family + '";src:' + source + ';font-display:swap;}'
+            if (opts && typeof opts.success === 'function') opts.success({})
+          } catch (e) {
+            if (opts && typeof opts.fail === 'function') opts.fail(e)
+          } finally {
+            if (opts && typeof opts.complete === 'function') opts.complete()
+          }
+        }
+      }
     </script>
     <script type="module" src="/src/main.js"></script>
   </body>

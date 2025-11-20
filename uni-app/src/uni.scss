@@ -1,5 +1,5 @@
 $u-theme: true;
-@use 'uview-plus/theme.scss' as * with ($u-theme: true);
+@import 'uview-plus/theme.scss';
 $color-primary: #8B5A2B;
 $color-secondary: #D4AF37;
 $color-bg: #FDF6E3;
