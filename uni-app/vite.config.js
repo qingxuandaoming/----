@@ -7,5 +7,9 @@ export default defineConfig({
   plugins: [uniPlugin ? uniPlugin() : []].flat(),
   optimizeDeps: {
     exclude: ['uview-plus']
+  },
+  server: {
+    port: 5501,
+    host: true
   }
 })

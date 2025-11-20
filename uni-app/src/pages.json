@@ -19,15 +19,6 @@
       }
     },
     {
-      "path": "pages/login/index",
-      "style": {
-        "navigationBarTitleText": "登录",
-        "navigationBarBackgroundColor": "#FDF6E3",
-        "navigationBarTextStyle": "black",
-        "backgroundColor": "#FDF6E3"
-      }
-    },
-    {
       "path": "pages/points/index",
       "style": {
         "navigationBarTitleText": "积分商城",
