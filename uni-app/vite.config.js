@@ -36,7 +36,7 @@ export default defineConfig({
     port: 5501,
     host: true,
     headers: {
-      'X-Content-Type-Options': 'nosniff'
+      'x-content-type-options': 'nosniff'
     }
   },
   css: {

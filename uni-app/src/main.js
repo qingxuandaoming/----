@@ -10,9 +10,6 @@ import '@dcloudio/uni-components/style/swiper-item.css'
 export function createApp() {
   const app = createSSRApp(App)
   app.use(uviewPlus)
-  const shouldSelfMount = typeof window !== 'undefined' && typeof document !== 'undefined' && document.getElementById('app') && !window.__uniRoutes
-  if (shouldSelfMount) {
-    app.mount('#app')
-  }
+  app.mount('#app')
   return { app }
 }

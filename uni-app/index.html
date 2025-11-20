@@ -46,7 +46,7 @@
       }
       if (typeof uni.chooseImage !== 'function') {
         uni.chooseImage = function(opts){
-          var input = document.createElement('input'); input.type = 'file'; input.accept = 'image/*'; input.onchange = function(){
+          var input = document.createElement('input'); input.type = 'file'; input.name = 'imageUpload'; input.accept = 'image/*'; input.onchange = function(){
             var file = input.files && input.files[0]; var url = file ? URL.createObjectURL(file) : ''
             if (opts && typeof opts.success === 'function') opts.success({ tempFilePaths: [url] })
           }; input.click()
