@@ -10,9 +10,27 @@
       }
     },
     {
+      "path": "pages/points/index",
+      "style": {
+        "navigationBarTitleText": "积分商城",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
       "path": "pages/category/index",
       "style": {
         "navigationBarTitleText": "分类",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/goods/detail",
+      "style": {
+        "navigationBarTitleText": "商品详情",
         "navigationBarBackgroundColor": "#FDF6E3",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#FDF6E3"
@@ -40,6 +58,16 @@
       "path": "pages/profile/index",
       "style": {
         "navigationBarTitleText": "我的",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    }
+    ,
+    {
+      "path": "pages/vip/index",
+      "style": {
+        "navigationBarTitleText": "VIP 会员",
         "navigationBarBackgroundColor": "#FDF6E3",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#FDF6E3"

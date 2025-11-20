@@ -1,5 +1,5 @@
 <template>
-  <view class="product-card">
+  <view class="product-card" @click="goDetail">
     <image :src="item.image" class="thumb" mode="aspectFill"></image>
     <view class="info">
       <text class="name">{{ item.name }}</text>
@@ -9,8 +9,8 @@
         <text class="tag">月销 {{ item.sales || 0 }}</text>
       </view>
     </view>
-    <view class="actions">
-      <button class="btn-add">加入购物车</button>
+    <view class="actions" @click.stop>
+      <u-button type="primary" shape="circle" size="small">加入购物车</u-button>
     </view>
   </view>
 </template>
@@ -19,6 +19,9 @@
 const props = defineProps({
   item: { type: Object, required: true }
 })
+const goDetail = () => {
+  uni.navigateTo({ url: `/pages/goods/detail?id=${props.item.id}` })
+}
 </script>
 
 <style lang="scss" scoped>

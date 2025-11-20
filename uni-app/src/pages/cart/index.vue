@@ -6,24 +6,29 @@
     </view>
 
     <view class="list">
-      <view class="item" v-for="item in cart" :key="item.id">
-        <image :src="item.image" class="thumb" mode="aspectFill"></image>
-        <view class="info">
-          <text class="name">{{ item.name }}</text>
-          <text class="spec">规格：默认</text>
-          <view class="row">
-            <text class="price">¥{{ item.price.toFixed(2) }}</text>
-            <view class="number-box">
-              <button class="btn" @click="dec(item)">-</button>
-              <input class="num" type="number" v-model.number="item.quantity" @input="onQtyChange(item)" />
-              <button class="btn" @click="inc(item)">+</button>
+      <u-swipe-action>
+        <u-swipe-action-item
+          v-for="item in cart"
+          :key="item.id"
+          :options="swipeOptions"
+          @click="() => removeItem(item.id)"
+        >
+          <view class="item">
+            <image :src="item.image" class="thumb" mode="aspectFill"></image>
+            <view class="info">
+              <text class="name">{{ item.name }}</text>
+              <text class="spec">规格：默认</text>
+              <view class="row">
+                <text class="price">¥{{ item.price.toFixed(2) }}</text>
+                <u-number-box v-model="item.quantity" :min="1" :max="99" integer @change="val => onQtyChange(item, val)" />
+              </view>
+            </view>
+            <view class="delete" v-if="editing">
+              <u-button type="error" size="small" @click="removeItem(item.id)">删除</u-button>
             </view>
           </view>
-        </view>
-        <view class="delete" v-if="editing">
-          <button class="btn-del" @click="removeItem(item.id)">删除</button>
-        </view>
-      </view>
+        </u-swipe-action-item>
+      </u-swipe-action>
     </view>
 
     <view class="bottom-bar">
@@ -42,6 +47,9 @@ import { cartList } from '../../mock/cart.js'
 
 const editing = ref(false)
 const cart = ref(cartList.map(i => ({ ...i })))
+const swipeOptions = [
+  { text: '删除', style: { backgroundColor: '#fa436a', color: '#fff' } }
+]
 
 const toggleEdit = () => {
   editing.value = !editing.value
@@ -51,8 +59,8 @@ const removeItem = (id) => {
   cart.value = cart.value.filter(i => i.id !== id)
 }
 
-const onQtyChange = (item) => {
-  if (item.quantity < 1) item.quantity = 1
+const onQtyChange = (item, val) => {
+  item.quantity = Math.max(1, Math.min(99, Number(val)))
 }
 
 const inc = (item) => { if (item.quantity < 99) item.quantity++ }
@@ -112,8 +120,6 @@ const totalAmount = computed(() => {
   justify-content: space-between;
 }
 .number-box { display: flex; align-items: center; gap: 8rpx; }
-.btn { width: 60rpx; height: 48rpx; border: 1rpx solid #ddd; background: #fff; border-radius: 8rpx; }
-.num { width: 80rpx; height: 48rpx; border: 1rpx solid #ddd; text-align: center; border-radius: 8rpx; }
 .price {
   color: $text-danger;
   font-weight: 600;

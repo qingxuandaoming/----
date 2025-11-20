@@ -29,18 +29,7 @@
     </view>
 
     <SectionHeader title="趋势指标" />
-    <view class="bars">
-      <view class="bar-row">
-        <text class="label">疲劳度</text>
-        <view class="bar"><view class="fill" :style="{ width: fatigue + '%' }"></view></view>
-        <text class="value">{{ fatigue }}%</text>
-      </view>
-      <view class="bar-row">
-        <text class="label">睡眠质量</text>
-        <view class="bar"><view class="fill alt" :style="{ width: sleep + '%' }"></view></view>
-        <text class="value">{{ sleep }}%</text>
-      </view>
-    </view>
+    <TrendSvgChart :labels="labels" :series="trendSeries" :width="700" :height="320" />
 
     <view class="recommend">
       <text class="tip">推荐：黄芪党参乌鸡汤</text>
@@ -62,6 +51,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import SectionHeader from '../../components/SectionHeader.vue'
+import TrendSvgChart from '../../components/TrendSvgChart.vue'
 import { userInfo as user } from '../../mock/user.js'
 
 const segments = ref([
@@ -72,6 +62,11 @@ const segments = ref([
 ])
 const fatigue = ref(40)
 const sleep = ref(75)
+const labels = ref(['周一','周二','周三','周四','周五','周六','周日'])
+const trendSeries = ref([
+  { name: '疲劳度', color: '#8B5A2B', data: [40, 45, 42, 50, 48, 43, 38] },
+  { name: '睡眠质量', color: '#D4AF37', data: [70, 72, 68, 75, 78, 74, 76] }
+])
 const records = ref(12)
 
 const size = 220
@@ -97,12 +92,6 @@ const arcs = computed(() => {
 .legend-item { display: flex; align-items: center; gap: 12rpx; }
 .dot { width: 24rpx; height: 24rpx; border-radius: 50%; }
 .bars { display: flex; flex-direction: column; gap: 16rpx; }
-.bar-row { display: flex; align-items: center; gap: 12rpx; }
-.label { width: 180rpx; color: $text-secondary; }
-.bar { flex: 1; height: 20rpx; background-color: #eee; border-radius: 20rpx; overflow: hidden; }
-.fill { height: 100%; background-color: $color-primary; }
-.fill.alt { background-color: $color-secondary; }
-.value { width: 100rpx; text-align: right; }
 .recommend { background-color: $color-card-bg; border-radius: $radius-card; padding: 20rpx; }
 .tip { color: $text-primary; }
 .overview { display: flex; gap: 16rpx; }

@@ -2,7 +2,7 @@
   <view class="home">
     <view class="top-bar">
       <text class="logo">分类</text>
-      <input class="search" v-model="keyword" placeholder="搜索药膳食材/养生方案" />
+      <u-search v-model="keyword" placeholder="搜索药膳食材/养生方案" :show-action="false" shape="round" bgColor="#FDF6E3" />
       <view class="top-actions">
         <text>我的</text>
         <text>客服</text>
@@ -10,23 +10,11 @@
     </view>
 
     <view class="category-tabs">
-      <scroll-view scroll-x class="tabs">
-        <view
-          v-for="(t,i) in tabs"
-          :key="i"
-          class="tab"
-          :class="{ active: currentTab===i }"
-          @click="currentTab=i"
-        >{{ t.name }}</view>
-      </scroll-view>
+      <u-tabs :list="tabs" :current="currentTab" @change="onTabChange" lineColor="#8B5A2B" :scrollable="true" />
     </view>
 
     <view class="banner">
-      <swiper class="swiper" indicator-dots circular autoplay>
-        <swiper-item v-for="(b, i) in banners" :key="i">
-          <image :src="b.image" class="banner-img" mode="aspectFill" />
-        </swiper-item>
-      </swiper>
+      <u-swiper class="swiper" :list="banners" keyName="image" circular autoplay indicator :height="360" radius="20" />
     </view>
 
     <view class="hot-list">
@@ -46,6 +34,9 @@ import { goodsList } from '../../mock/goods.js'
 
 const keyword = ref('')
 const currentTab = ref(0)
+const onTabChange = (e) => {
+  currentTab.value = typeof e === 'number' ? e : e.index
+}
 const tabs = ref([
   { name: '补气养血' },
   { name: '健脾养胃' },
@@ -72,7 +63,7 @@ const goods = ref(goodsList)
   gap: 16rpx;
 }
 .logo { color: $color-primary; }
-.search { flex: 1; background: $color-bg; border: 1rpx solid #e8e8e8; border-radius: 40rpx; padding: 14rpx 20rpx; }
+.search { flex: 1; }
 .top-actions {
   display: flex;
   align-items: center;
@@ -82,8 +73,6 @@ const goods = ref(goodsList)
   margin: 20rpx 0;
 }
 .tabs { white-space: nowrap; }
-.tab { display: inline-block; padding: 12rpx 18rpx; margin-right: 12rpx; border-radius: 30rpx; background: #fff; border: 1rpx solid #eee; }
-.tab.active { color: #fff; background: $color-primary; border-color: $color-primary; }
 .banner {
   margin-bottom: 24rpx;
 }
