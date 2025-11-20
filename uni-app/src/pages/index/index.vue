@@ -55,7 +55,7 @@ const tabs = ref([
   { name: '润肺止咳' }
 ])
 const banners = ref([
-  { image: './illustration-health.svg', title: '健康管理' },
+  { image: '/illustration-health.svg', title: '健康管理' },
   { image: 'https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1200&q=60', title: '膳食平衡' },
   { image: 'https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=1200&q=60', title: '清爽茶饮' }
 ])

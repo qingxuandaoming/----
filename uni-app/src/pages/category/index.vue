@@ -30,9 +30,9 @@ const menuIcons = ['./icon-soup.svg','./icon-dessert.svg','./icon-tea.svg','./ic
 const current = ref(0)
 const sections = computed(() => [
   { title: '汤膳', items: goodsList.filter(g => (g.tags||[]).includes('滋阴润燥') || (g.tags||[]).includes('补气养血') || (g.tags||[]).includes('清热降火')) },
-  { title: '糕点', items: [] },
+  { title: '糕点', items: goodsList.filter(g => (g.tags||[]).includes('糕点')) },
   { title: '茶饮', items: goodsList.filter(g => (g.tags||[]).includes('清热')) },
-  { title: '粥膳', items: [] }
+  { title: '粥膳', items: goodsList.filter(g => (g.tags||[]).includes('粥膳')) }
 ])
 const anchorId = ref('sec-0')
 const toAnchor = (i) => { anchorId.value = 'sec-' + i }

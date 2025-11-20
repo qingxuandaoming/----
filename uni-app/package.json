@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev:h5": "vite",
-    "build:h5": "vite build"
+    "build:h5": "vite build",
+    "dev:app-android": "uni dev -p app-android",
+    "build:app-android": "uni build -p app-android"
   },
   "dependencies": {
     "@dcloudio/uni-components": "^3.0.0-alpha-3000020210521001",

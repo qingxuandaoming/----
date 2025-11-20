@@ -21,7 +21,7 @@ import ProductCard from '../../components/ProductCard.vue'
 import { goodsList } from '../../mock/goods.js'
 
 const keyword = ref('')
-const emptySrc = './empty-search.svg'
+const emptySrc = '/empty-search.svg'
 const filtered = computed(() => {
   const k = keyword.value.trim()
   if (!k) return goodsList
