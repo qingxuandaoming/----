@@ -1,5 +1,9 @@
+<template>
+  <IndexPage />
+</template>
+
 <script setup>
-const _app = {}
+import IndexPage from './pages/index/index.vue'
 </script>
 
 <style lang="scss">

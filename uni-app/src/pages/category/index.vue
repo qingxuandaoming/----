@@ -1,6 +1,9 @@
 <template>
   <view class="category">
-    <u-empty mode="list" icon="https://cdn.uviewui.com/uview/empty/list.png" text="分类开发中" />
+    <view class="empty">
+      <image class="empty-img" src="https://cdn.uviewui.com/uview/empty/list.png" />
+      <text class="empty-text">分类开发中</text>
+    </view>
   </view>
 </template>
 
@@ -11,4 +14,6 @@
 .category {
   padding: 24rpx;
 }
+.empty { display: flex; flex-direction: column; align-items: center; gap: 12rpx; color: $text-secondary; }
+.empty-img { width: 240rpx; height: 240rpx; }
 </style>

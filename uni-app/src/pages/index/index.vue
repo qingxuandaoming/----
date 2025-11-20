@@ -1,20 +1,32 @@
 <template>
   <view class="home">
     <view class="top-bar">
-      <u-icon name="grid" size="26" color="#8B5A2B"></u-icon>
-      <u-search v-model="keyword" placeholder="搜索药膳食材/养生方案" shape="round" :showAction="false"></u-search>
+      <text class="logo">分类</text>
+      <input class="search" v-model="keyword" placeholder="搜索药膳食材/养生方案" />
       <view class="top-actions">
-        <u-icon name="account" size="26" color="#8B5A2B"></u-icon>
-        <u-icon name="kefu" size="26" color="#8B5A2B"></u-icon>
+        <text>我的</text>
+        <text>客服</text>
       </view>
     </view>
 
     <view class="category-tabs">
-      <u-tabs :list="tabs" v-model="currentTab" scrollable lineColor="#8B5A2B" :activeStyle="{color: '#8B5A2B', fontWeight: '600'}"></u-tabs>
+      <scroll-view scroll-x class="tabs">
+        <view
+          v-for="(t,i) in tabs"
+          :key="i"
+          class="tab"
+          :class="{ active: currentTab===i }"
+          @click="currentTab=i"
+        >{{ t.name }}</view>
+      </scroll-view>
     </view>
 
     <view class="banner">
-      <u-swiper :list="banners" height="180" border-radius="20" indicator></u-swiper>
+      <swiper class="swiper" indicator-dots circular autoplay>
+        <swiper-item v-for="(b, i) in banners" :key="i">
+          <image :src="b.image" class="banner-img" mode="aspectFill" />
+        </swiper-item>
+      </swiper>
     </view>
 
     <view class="hot-list">
@@ -59,6 +71,8 @@ const goods = ref(goodsList)
   align-items: center;
   gap: 16rpx;
 }
+.logo { color: $color-primary; }
+.search { flex: 1; background: $color-bg; border: 1rpx solid #e8e8e8; border-radius: 40rpx; padding: 14rpx 20rpx; }
 .top-actions {
   display: flex;
   align-items: center;
@@ -67,9 +81,14 @@ const goods = ref(goodsList)
 .category-tabs {
   margin: 20rpx 0;
 }
+.tabs { white-space: nowrap; }
+.tab { display: inline-block; padding: 12rpx 18rpx; margin-right: 12rpx; border-radius: 30rpx; background: #fff; border: 1rpx solid #eee; }
+.tab.active { color: #fff; background: $color-primary; border-color: $color-primary; }
 .banner {
   margin-bottom: 24rpx;
 }
+.swiper { height: 360rpx; border-radius: 20rpx; overflow: hidden; }
+.banner-img { width: 100%; height: 100%; }
 .hot-list {
   display: flex;
   flex-direction: column;

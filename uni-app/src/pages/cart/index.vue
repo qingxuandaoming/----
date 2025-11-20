@@ -6,29 +6,24 @@
     </view>
 
     <view class="list">
-      <u-swipe-action>
-        <u-swipe-action-item
-          v-for="item in cart"
-          :key="item.id"
-          :options="swipeOptions"
-          @click="onSwipeAction(item)"
-        >
-          <view class="item">
-            <u-image :src="item.image" width="140rpx" height="140rpx" radius="16"></u-image>
-            <view class="info">
-              <text class="name">{{ item.name }}</text>
-              <text class="spec">规格：默认</text>
-              <view class="row">
-                <text class="price">¥{{ item.price.toFixed(2) }}</text>
-                <u-number-box v-model="item.quantity" :min="1" :max="99" @change="onQtyChange(item)"></u-number-box>
-              </view>
-            </view>
-            <view class="delete" v-if="editing">
-              <u-button type="error" size="small" @click="removeItem(item.id)">删除</u-button>
+      <view class="item" v-for="item in cart" :key="item.id">
+        <image :src="item.image" class="thumb" mode="aspectFill"></image>
+        <view class="info">
+          <text class="name">{{ item.name }}</text>
+          <text class="spec">规格：默认</text>
+          <view class="row">
+            <text class="price">¥{{ item.price.toFixed(2) }}</text>
+            <view class="number-box">
+              <button class="btn" @click="dec(item)">-</button>
+              <input class="num" type="number" v-model.number="item.quantity" @input="onQtyChange(item)" />
+              <button class="btn" @click="inc(item)">+</button>
             </view>
           </view>
-        </u-swipe-action-item>
-      </u-swipe-action>
+        </view>
+        <view class="delete" v-if="editing">
+          <button class="btn-del" @click="removeItem(item.id)">删除</button>
+        </view>
+      </view>
     </view>
 
     <view class="bottom-bar">
@@ -48,10 +43,6 @@ import { cartList } from '../../mock/cart.js'
 const editing = ref(false)
 const cart = ref(cartList.map(i => ({ ...i })))
 
-const swipeOptions = [
-  { text: '删除', style: { backgroundColor: '#fa436a' } }
-]
-
 const toggleEdit = () => {
   editing.value = !editing.value
 }
@@ -60,13 +51,12 @@ const removeItem = (id) => {
   cart.value = cart.value.filter(i => i.id !== id)
 }
 
-const onSwipeAction = (item) => {
-  removeItem(item.id)
-}
-
 const onQtyChange = (item) => {
   if (item.quantity < 1) item.quantity = 1
 }
+
+const inc = (item) => { if (item.quantity < 99) item.quantity++ }
+const dec = (item) => { if (item.quantity > 1) item.quantity-- }
 
 const totalAmount = computed(() => {
   return cart.value.reduce((sum, i) => sum + i.price * i.quantity, 0)
@@ -101,6 +91,7 @@ const totalAmount = computed(() => {
   border-radius: $radius-card;
   padding: 20rpx;
 }
+.thumb { width: 140rpx; height: 140rpx; border-radius: 16rpx; }
 .info {
   flex: 1;
   display: flex;
@@ -120,6 +111,9 @@ const totalAmount = computed(() => {
   align-items: center;
   justify-content: space-between;
 }
+.number-box { display: flex; align-items: center; gap: 8rpx; }
+.btn { width: 60rpx; height: 48rpx; border: 1rpx solid #ddd; background: #fff; border-radius: 8rpx; }
+.num { width: 80rpx; height: 48rpx; border: 1rpx solid #ddd; text-align: center; border-radius: 8rpx; }
 .price {
   color: $text-danger;
   font-weight: 600;
@@ -136,4 +130,5 @@ const totalAmount = computed(() => {
 }
 .left { display: flex; align-items: baseline; gap: 8rpx; }
 .total { color: $text-danger; font-size: 32rpx; font-weight: 600; }
+.btn-del { background: #fa436a; color: #fff; border: none; padding: 10rpx 16rpx; border-radius: 8rpx; }
 </style>
