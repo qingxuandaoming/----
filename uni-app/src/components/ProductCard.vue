@@ -40,7 +40,10 @@ const addToCart = () => {
   padding: 24rpx;
   background-color: $color-card-bg;
   border-radius: $radius-card;
+  transition: transform 0.12s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
 }
+.product-card:active { transform: scale(0.98); box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06); }
 .thumb { width: 160rpx; height: 160rpx; border-radius: 16rpx; }
 .info {
   flex: 1;

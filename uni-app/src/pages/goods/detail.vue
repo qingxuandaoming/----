@@ -75,13 +75,14 @@ const onAddCart = () => {
   else cart.push({ id: Date.now(), goodsId: item.value.id, name: item.value.name, price: item.value.price || 0, quantity: quantity.value, image: item.value.image })
   uni.setStorageSync('cart', cart)
   uni.showToast({ title: '已加入购物车', icon: 'none' })
+  cartCount.value = cart.reduce((n,i)=>n+i.quantity,0)
 }
 const onBuyNow = () => {
   uni.navigateTo({ url: '/pages/order/success' })
 }
 const toHome = () => uni.switchTab({ url: '/pages/tabbar/home/index' })
 const toCart = () => uni.switchTab({ url: '/pages/tabbar/cart/index' })
-const cartCount = computed(() => (uni.getStorageSync('cart') || []).reduce((n,i)=>n+i.quantity,0))
+const cartCount = ref((uni.getStorageSync('cart') || []).reduce((n,i)=>n+i.quantity,0))
 </script>
 
 <style lang="scss" scoped>

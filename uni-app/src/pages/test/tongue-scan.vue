@@ -1,7 +1,7 @@
 <template>
   <view class="tongue-scan">
     <view class="canvas">
-      <view class="grid">
+      <view class="grid" v-if="scanning">
         <view v-for="i in 36" :key="i" class="cell"></view>
       </view>
       <image v-if="img" :src="img" class="preview" mode="aspectFit" />

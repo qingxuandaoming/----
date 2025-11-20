@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import SectionHeader from '../../components/SectionHeader.vue'
+import SectionHeader from '../../../components/SectionHeader.vue'
 
 const history = ref(uni.getStorageSync('test_history') || [])
 const toQuestionnaire = () => uni.navigateTo({ url: '/pages/test/questionnaire' })

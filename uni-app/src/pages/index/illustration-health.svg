@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDF6E3"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8B5A2B"/>
+      <stop offset="1" stop-color="#D4AF37"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <circle cx="120" cy="220" r="80" fill="url(#accent)" opacity="0.12"/>
+  <circle cx="680" cy="160" r="90" fill="url(#accent)" opacity="0.12"/>
+  <g transform="translate(280,80)">
+    <rect x="0" y="60" width="240" height="160" rx="20" fill="#fff" stroke="#8B5A2B" stroke-width="3"/>
+    <rect x="24" y="88" width="192" height="24" rx="12" fill="#FDF6E3"/>
+    <rect x="24" y="124" width="192" height="24" rx="12" fill="#FDF6E3"/>
+    <rect x="24" y="160" width="120" height="24" rx="12" fill="#FDF6E3"/>
+    <circle cx="200" cy="172" r="8" fill="#8B5A2B"/>
+    <text x="120" y="40" text-anchor="middle" font-size="22" fill="#8B5A2B">健康管理</text>
+  </g>
+</svg>

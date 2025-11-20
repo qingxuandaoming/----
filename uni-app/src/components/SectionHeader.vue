@@ -12,12 +12,12 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .section-header {
-  background-color: #000000;
-  padding: 24rpx 28rpx;
+  background: linear-gradient(90deg, #FDF6E3, #FFFFFF);
+  padding: 20rpx 24rpx;
   border-radius: $radius-card;
 }
 .title {
-  color: #FFFFFF;
+  color: $text-primary;
   font-size: 32rpx;
   font-weight: 600;
 }

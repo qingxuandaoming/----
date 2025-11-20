@@ -2,24 +2,7 @@
   <view class="result-page">
     <SectionHeader title="体质占比" />
     <view class="donut-wrap">
-      <svg :width="size" :height="size" :viewBox="`0 0 ${size} ${size}`">
-        <g transform="translate(0,0)">
-          <circle :cx="center" :cy="center" :r="radius" stroke="#eee" stroke-width="20" fill="none" />
-          <template v-for="(seg, idx) in arcs" :key="idx">
-            <circle
-              :cx="center"
-              :cy="center"
-              :r="radius"
-              :stroke="seg.color"
-              stroke-width="20"
-              fill="none"
-              :stroke-dasharray="`${seg.len} ${circumference - seg.len}`"
-              :stroke-dashoffset="seg.offset"
-              stroke-linecap="butt"
-            />
-          </template>
-        </g>
-      </svg>
+      <view class="donut" :style="donutStyle"></view>
       <view class="legend">
         <view class="legend-item" v-for="(seg, i) in segments" :key="i">
           <view class="dot" :style="{ backgroundColor: seg.color }"></view>
@@ -31,8 +14,8 @@
     <SectionHeader title="趋势指标" />
     <TrendSvgChart :labels="labels" :series="trendSeries" :width="700" :height="320" />
 
-    <view class="recommend">
-      <text class="tip">结论：湿热质（易上火、需清热）</text>
+  <view class="recommend">
+      <text class="tip">结论：{{ result }}（{{ resultHint }}）</text>
       <view class="list">
         <ProductCard v-for="item in recommend" :key="item.id" :item="item" />
       </view>
@@ -94,25 +77,36 @@ const timeline = ref([
 ])
 
 const size = 220
-const center = size / 2
-const radius = 80
-const circumference = 2 * Math.PI * radius
-
-const arcs = computed(() => {
+const donutStyle = computed(() => {
+  const stops = []
   let acc = 0
-  return segments.value.map(s => {
-    const len = (s.value / 100) * circumference
-    const seg = { len, offset: -acc, color: s.color }
-    acc += len
-    return seg
+  segments.value.forEach(s => {
+    const next = acc + s.value
+    stops.push(`${s.color} ${acc}% ${next}%`)
+    acc = next
   })
+  const bg = `conic-gradient(${stops.join(',')})`
+  return { width: size + 'px', height: size + 'px', borderRadius: '50%', background: bg }
 })
-const recommend = computed(() => goodsList.filter(g => (g.tags||[]).includes('清热')))
+const result = computed(() => {
+  const history = uni.getStorageSync('test_history') || []
+  return history[0]?.result || '湿热质'
+})
+const tagMap = {
+  '湿热质': { tag: '清热', hint: '易上火、需清热' },
+  '气虚质': { tag: '补气养血', hint: '疲劳乏力、需补气养血' },
+  '阴虚质': { tag: '滋阴润燥', hint: '口干咽燥、需滋阴润燥' }
+}
+const resultHint = computed(() => tagMap[result.value]?.hint || '综合调理')
+const recommendTag = computed(() => tagMap[result.value]?.tag || '清热')
+const recommend = computed(() => goodsList.filter(g => (g.tags||[]).includes(recommendTag.value)))
 </script>
 
 <style lang="scss" scoped>
 .result-page { padding: 24rpx; display: flex; flex-direction: column; gap: 24rpx; }
 .donut-wrap { display: flex; gap: 24rpx; align-items: center; }
+.donut { position: relative; box-shadow: 0 6rpx 24rpx rgba(0,0,0,0.06); }
+.donut::before { content: ''; position: absolute; inset: 25%; background: #fff; border-radius: 50%; box-shadow: inset 0 0 0 2rpx #eee; }
 .legend { display: flex; flex-direction: column; gap: 12rpx; }
 .legend-item { display: flex; align-items: center; gap: 12rpx; }
 .dot { width: 24rpx; height: 24rpx; border-radius: 50%; }

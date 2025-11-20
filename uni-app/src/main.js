@@ -10,6 +10,10 @@ import '@dcloudio/uni-components/style/swiper-item.css'
 export function createApp() {
   const app = createSSRApp(App)
   app.use(uviewPlus)
+  if (typeof uni !== 'undefined' && typeof window !== 'undefined') {
+    if (!uni.onWindowResize) uni.onWindowResize = (cb) => window.addEventListener('resize', cb)
+    if (!uni.offWindowResize) uni.offWindowResize = (cb) => window.removeEventListener('resize', cb)
+  }
   app.mount('#app')
   return { app }
 }

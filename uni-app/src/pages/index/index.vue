@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import SectionHeader from '../../components/SectionHeader.vue'
 import ProductCard from '../../components/ProductCard.vue'
 import { goodsList } from '../../mock/goods.js'
@@ -55,9 +55,9 @@ const tabs = ref([
   { name: '润肺止咳' }
 ])
 const banners = ref([
-  { image: 'https://picsum.photos/seed/winter/800/400', title: '冬季温补' },
-  { image: 'https://picsum.photos/seed/autumn/800/400', title: '秋季润燥' },
-  { image: 'https://picsum.photos/seed/summer/800/400', title: '夏季滋阴' }
+  { image: './illustration-health.svg', title: '健康管理' },
+  { image: 'https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1200&q=60', title: '膳食平衡' },
+  { image: 'https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=1200&q=60', title: '清爽茶饮' }
 ])
 const goods = ref(goodsList)
 const goodsFiltered = computed(() => {
