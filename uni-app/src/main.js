@@ -1,6 +1,11 @@
-import { createSSRApp, createApp as createVueApp } from 'vue'
+import { createSSRApp } from 'vue'
 import App from './App.vue'
 import uviewPlus from 'uview-plus'
+import '@dcloudio/uni-components/style/view.css'
+import '@dcloudio/uni-components/style/text.css'
+import '@dcloudio/uni-components/style/scroll-view.css'
+import '@dcloudio/uni-components/style/swiper.css'
+import '@dcloudio/uni-components/style/swiper-item.css'
 
 export function createApp() {
   const app = createSSRApp(App)
@@ -8,15 +13,4 @@ export function createApp() {
   return {
     app
   }
-}
-
-function createH5App() {
-  const app = createVueApp(App)
-  app.use(uviewPlus)
-  return app
-}
-
-if (typeof document !== 'undefined') {
-  const app = createH5App()
-  app.mount('#app')
 }

@@ -4,8 +4,31 @@ import uni from '@dcloudio/vite-plugin-uni'
 
 const uniPlugin = typeof uni === 'function' ? uni : (uni && typeof uni.default === 'function' ? uni.default : null)
 
+const wxsStubPlugin = {
+  name: 'wxs-stub',
+  enforce: 'pre',
+  load(id) {
+    if (id.includes('.wxs')) {
+      return 'export default {}'
+    }
+  }
+}
+
 export default defineConfig({
-  plugins: [uniPlugin ? uniPlugin() : []].flat(),
+  plugins: [
+    wxsStubPlugin,
+    uniPlugin
+      ? uniPlugin({
+          vueOptions: {
+            template: {
+              compilerOptions: {
+                isCustomElement: (tag) => ['scroll-view', 'swiper', 'swiper-item'].includes(tag)
+              }
+            }
+          }
+        })
+      : []
+  ].flat(),
   optimizeDeps: {
     exclude: ['uview-plus']
   },
