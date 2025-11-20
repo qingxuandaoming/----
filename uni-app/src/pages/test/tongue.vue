@@ -36,7 +36,7 @@ const takePhoto = () => {
 }
 const toAdapt = () => {
   showResult.value = false
-  uni.switchTab({ url: '/pages/category/index' })
+  uni.switchTab({ url: '/pages/tabbar/category/index' })
 }
 </script>
 

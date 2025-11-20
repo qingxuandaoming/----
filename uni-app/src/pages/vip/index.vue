@@ -15,6 +15,11 @@
       <view class="benefit"><text>优先客服</text><u-tag text="优先" type="primary" plain /></view>
       <view class="benefit"><text>健康档案管理</text><u-tag text="加倍" type="warning" plain /></view>
     </view>
+    <SectionHeader title="成长值" />
+    <view class="growth">
+      <u-line-progress :percent="growth" height="16" activeColor="#8B5A2B" />
+      <u-button size="small" shape="circle" @click="sign">签到</u-button>
+    </view>
     <u-button type="primary" shape="circle">立即开通/续费</u-button>
   </view>
 </template>
@@ -22,6 +27,9 @@
 <script setup>
 import SectionHeader from '../../components/SectionHeader.vue'
 import { userInfo as user } from '../../mock/user.js'
+import { ref } from 'vue'
+const growth = ref(40)
+const sign = () => { growth.value = Math.min(100, growth.value + 10); uni.showToast({ title: '成长值+10', icon: 'none' }) }
 </script>
 
 <style lang="scss" scoped>
@@ -43,4 +51,5 @@ import { userInfo as user } from '../../mock/user.js'
 .num { font-size: 32rpx; font-weight: 700; }
 .benefits { display: flex; flex-direction: column; gap: 12rpx; background-color: $color-card-bg; border-radius: $radius-card; padding: 16rpx; }
 .benefit { display: flex; justify-content: space-between; align-items: center; }
+.growth { display: flex; align-items: center; justify-content: space-between; background-color: $color-card-bg; border-radius: $radius-card; padding: 16rpx; }
 </style>

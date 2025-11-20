@@ -1,7 +1,7 @@
 { 
   "pages": [
     {
-      "path": "pages/index/index",
+      "path": "pages/tabbar/home/index",
       "style": {
         "navigationBarTitleText": "首页",
         "navigationBarBackgroundColor": "#FDF6E3",
@@ -10,25 +10,7 @@
       }
     },
     {
-      "path": "pages/login/index",
-      "style": {
-        "navigationBarTitleText": "登录",
-        "navigationBarBackgroundColor": "#FDF6E3",
-        "navigationBarTextStyle": "black",
-        "backgroundColor": "#FDF6E3"
-      }
-    },
-    {
-      "path": "pages/points/index",
-      "style": {
-        "navigationBarTitleText": "积分商城",
-        "navigationBarBackgroundColor": "#FDF6E3",
-        "navigationBarTextStyle": "black",
-        "backgroundColor": "#FDF6E3"
-      }
-    },
-    {
-      "path": "pages/category/index",
+      "path": "pages/tabbar/category/index",
       "style": {
         "navigationBarTitleText": "分类",
         "navigationBarBackgroundColor": "#FDF6E3",
@@ -37,9 +19,36 @@
       }
     },
     {
-      "path": "pages/test/index",
+      "path": "pages/tabbar/test/index",
       "style": {
         "navigationBarTitleText": "体质测试",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/tabbar/cart/index",
+      "style": {
+        "navigationBarTitleText": "购物车",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/tabbar/profile/index",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录/注册",
         "navigationBarBackgroundColor": "#FDF6E3",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#FDF6E3"
@@ -55,16 +64,25 @@
       }
     },
     {
-      "path": "pages/test/result",
+      "path": "pages/common/search",
       "style": {
-        "navigationBarTitleText": "体质测试",
+        "navigationBarTitleText": "搜索",
         "navigationBarBackgroundColor": "#FDF6E3",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#FDF6E3"
       }
     },
     {
-      "path": "pages/test/tongue",
+      "path": "pages/test/questionnaire",
+      "style": {
+        "navigationBarTitleText": "问卷测试",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/test/tongue-scan",
       "style": {
         "navigationBarTitleText": "舌苔检测",
         "navigationBarBackgroundColor": "#FDF6E3",
@@ -73,28 +91,36 @@
       }
     },
     {
-      "path": "pages/cart/index",
+      "path": "pages/test/result",
       "style": {
-        "navigationBarTitleText": "购物车",
+        "navigationBarTitleText": "测试结果",
         "navigationBarBackgroundColor": "#FDF6E3",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#FDF6E3"
       }
     },
     {
-      "path": "pages/profile/index",
+      "path": "pages/marketing/points-mall",
       "style": {
-        "navigationBarTitleText": "我的",
+        "navigationBarTitleText": "积分商城",
         "navigationBarBackgroundColor": "#FDF6E3",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#FDF6E3"
       }
-    }
-    ,
+    },
     {
-      "path": "pages/vip/index",
+      "path": "pages/marketing/vip-center",
       "style": {
-        "navigationBarTitleText": "VIP 会员",
+        "navigationBarTitleText": "会员中心",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/order/success",
+      "style": {
+        "navigationBarTitleText": "下单成功",
         "navigationBarBackgroundColor": "#FDF6E3",
         "navigationBarTextStyle": "black",
         "backgroundColor": "#FDF6E3"
@@ -120,31 +146,31 @@
     "list": [
       {
         "text": "首页",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/tabbar/home/index",
         "iconPath": "https://img.icons8.com/ios-glyphs/48/home.png",
         "selectedIconPath": "https://img.icons8.com/fluency/48/home.png"
       },
       {
         "text": "分类",
-        "pagePath": "pages/category/index",
+        "pagePath": "pages/tabbar/category/index",
         "iconPath": "https://img.icons8.com/ios-glyphs/48/grid.png",
         "selectedIconPath": "https://img.icons8.com/fluency/48/grid.png"
       },
       {
-        "text": "测试",
-        "pagePath": "pages/test/index",
+        "text": "体质测试",
+        "pagePath": "pages/tabbar/test/index",
         "iconPath": "https://img.icons8.com/ios-glyphs/48/heart-with-pulse.png",
         "selectedIconPath": "https://img.icons8.com/fluency/48/heart-with-pulse.png"
       },
       {
         "text": "购物车",
-        "pagePath": "pages/cart/index",
+        "pagePath": "pages/tabbar/cart/index",
         "iconPath": "https://img.icons8.com/ios-glyphs/48/shopping-cart.png",
         "selectedIconPath": "https://img.icons8.com/fluency/48/shopping-cart.png"
       },
       {
         "text": "我的",
-        "pagePath": "pages/profile/index",
+        "pagePath": "pages/tabbar/profile/index",
         "iconPath": "https://img.icons8.com/ios-glyphs/48/user.png",
         "selectedIconPath": "https://img.icons8.com/fluency/48/user.png"
       }

@@ -32,7 +32,10 @@
     <TrendSvgChart :labels="labels" :series="trendSeries" :width="700" :height="320" />
 
     <view class="recommend">
-      <text class="tip">推荐：黄芪党参乌鸡汤</text>
+      <text class="tip">结论：湿热质（易上火、需清热）</text>
+      <view class="list">
+        <ProductCard v-for="item in recommend" :key="item.id" :item="item" />
+      </view>
     </view>
 
     <view class="overview">
@@ -64,7 +67,9 @@
 import { ref, computed } from 'vue'
 import SectionHeader from '../../components/SectionHeader.vue'
 import TrendSvgChart from '../../components/TrendSvgChart.vue'
+import ProductCard from '../../components/ProductCard.vue'
 import { userInfo as user } from '../../mock/user.js'
+import { goodsList } from '../../mock/goods.js'
 
 const segments = ref([
   { name: '平和质', value: 60, color: '#8B5A2B' },
@@ -102,6 +107,7 @@ const arcs = computed(() => {
     return seg
   })
 })
+const recommend = computed(() => goodsList.filter(g => (g.tags||[]).includes('清热')))
 </script>
 
 <style lang="scss" scoped>
@@ -113,6 +119,7 @@ const arcs = computed(() => {
 .bars { display: flex; flex-direction: column; gap: 16rpx; }
 .recommend { background-color: $color-card-bg; border-radius: $radius-card; padding: 20rpx; }
 .tip { color: $text-primary; }
+.list { display: flex; flex-direction: column; gap: 16rpx; margin-top: 12rpx; }
 .overview { display: flex; gap: 16rpx; }
 .card { flex: 1; background-color: $color-card-bg; border-radius: $radius-card; padding: 20rpx; display: flex; justify-content: space-between; align-items: center; }
 .num { font-size: 36rpx; color: $text-primary; font-weight: 700; }

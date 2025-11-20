@@ -5,48 +5,54 @@
       <u-button type="primary" size="small" plain @click="toggleEdit">{{ editing ? '完成' : '编辑' }}</u-button>
     </view>
 
-    <view class="list">
-      <u-swipe-action>
-        <u-swipe-action-item
-          v-for="item in cart"
-          :key="item.id"
-          :options="swipeOptions"
-          @click="() => removeItem(item.id)"
-        >
-          <view class="item">
-            <image :src="item.image" class="thumb" mode="aspectFill"></image>
-            <view class="info">
-              <text class="name">{{ item.name }}</text>
-              <text class="spec">规格：默认</text>
-              <view class="row">
-                <text class="price">¥{{ item.price.toFixed(2) }}</text>
-                <u-number-box v-model="item.quantity" :min="1" :max="99" integer @change="val => onQtyChange(item, val)" />
-              </view>
-            </view>
-            <view class="delete" v-if="editing">
-              <u-button type="error" size="small" @click="removeItem(item.id)">删除</u-button>
+  <view class="list">
+    <u-swipe-action>
+      <u-swipe-action-item
+        v-for="item in cart"
+        :key="item.id"
+        :options="swipeOptions"
+        @click="() => removeItem(item.id)"
+      >
+        <view class="item">
+          <u-checkbox v-model="item.checked" shape="circle"></u-checkbox>
+          <image :src="item.image" class="thumb" mode="aspectFill"></image>
+          <view class="info">
+            <text class="name">{{ item.name }}</text>
+            <text class="spec">规格：默认</text>
+            <view class="row">
+              <text class="price">¥{{ item.price.toFixed(2) }}</text>
+              <u-number-box v-model="item.quantity" :min="1" :max="99" integer @change="val => onQtyChange(item, val)" />
             </view>
           </view>
-        </u-swipe-action-item>
-      </u-swipe-action>
-    </view>
+          <view class="delete" v-if="editing">
+            <u-button type="error" size="small" @click="removeItem(item.id)">删除</u-button>
+          </view>
+        </view>
+      </u-swipe-action-item>
+    </u-swipe-action>
+  </view>
 
-    <view class="bottom-bar">
-      <view class="left">
-        <text>合计：</text>
-        <text class="total">¥{{ totalAmount.toFixed(2) }}</text>
-      </view>
-      <u-button shape="circle" type="primary" :plain="true" @click="checkout">去结算</u-button>
+  <view class="bottom-bar">
+    <view class="left">
+      <u-checkbox v-model="allChecked">全选</u-checkbox>
+      <text>合计：</text>
+      <text class="total">¥{{ totalAmount.toFixed(2) }}</text>
     </view>
+    <u-button shape="circle" type="primary" :plain="true" @click="checkout">去结算</u-button>
+  </view>
   </view>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { cartList } from '../../mock/cart.js'
+import { ref, computed, onMounted } from 'vue'
+import { cartList as mockCart } from '../../mock/cart.js'
 
 const editing = ref(false)
-const cart = ref(cartList.map(i => ({ ...i })))
+const cart = ref([])
+onMounted(() => {
+  const saved = uni.getStorageSync('cart') || mockCart
+  cart.value = saved.map(i => ({ ...i, checked: true }))
+})
 const swipeOptions = [
   { text: '删除', style: { backgroundColor: '#fa436a', color: '#fff' } }
 ]
@@ -57,21 +63,29 @@ const toggleEdit = () => {
 
 const removeItem = (id) => {
   cart.value = cart.value.filter(i => i.id !== id)
+  uni.setStorageSync('cart', cart.value.map(({ checked, ...rest }) => rest))
 }
 
 const onQtyChange = (item, val) => {
   item.quantity = Math.max(1, Math.min(99, Number(val)))
+  uni.setStorageSync('cart', cart.value.map(({ checked, ...rest }) => rest))
 }
 
 const inc = (item) => { if (item.quantity < 99) item.quantity++ }
 const dec = (item) => { if (item.quantity > 1) item.quantity-- }
 
+const allChecked = computed({
+  get: () => cart.value.length > 0 && cart.value.every(i => i.checked),
+  set: (v) => { cart.value.forEach(i => i.checked = !!v) }
+})
 const totalAmount = computed(() => {
-  return cart.value.reduce((sum, i) => sum + i.price * i.quantity, 0)
+  return cart.value.filter(i => i.checked).reduce((sum, i) => sum + i.price * i.quantity, 0)
 })
 
 const checkout = () => {
-  uni.showModal({ title: '去结算', content: `合计 ¥${totalAmount.value.toFixed(2)}`, confirmText: '确认', success(res){ if (res.confirm) uni.switchTab({ url: '/pages/profile/index' }) } })
+  const selected = cart.value.filter(i => i.checked)
+  if (selected.length === 0) { uni.showToast({ title: '请选择商品', icon: 'none' }); return }
+  uni.navigateTo({ url: '/pages/order/success' })
 }
 </script>
 
@@ -103,6 +117,7 @@ const checkout = () => {
   border-radius: $radius-card;
   padding: 20rpx;
 }
+.item > :deep(.u-checkbox) { margin-right: 8rpx; }
 .thumb { width: 140rpx; height: 140rpx; border-radius: 16rpx; }
 .info {
   flex: 1;

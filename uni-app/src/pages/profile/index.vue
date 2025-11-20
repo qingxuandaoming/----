@@ -12,8 +12,8 @@
 </template>
 
 <script setup>
-const toLogin = () => uni.navigateTo({ url: '/pages/login/index' })
-const toVIP = () => uni.navigateTo({ url: '/pages/vip/index' })
+const toLogin = () => uni.navigateTo({ url: '/pages/login/login' })
+const toVIP = () => uni.navigateTo({ url: '/pages/marketing/vip-center' })
 </script>
 
 <style lang="scss" scoped>

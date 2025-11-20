@@ -4,7 +4,7 @@
       <text class="title">积分商城</text>
       <view class="points">
         <text>当前积分</text>
-        <text class="num">{{ user.points }}</text>
+        <text class="num">{{ points }}</text>
       </view>
     </view>
     <SectionHeader title="精选兑换" />
@@ -16,7 +16,7 @@
           <text class="desc">{{ item.desc || '营养均衡，适合大众' }}</text>
           <view class="row">
             <text class="pts">{{ pointsPrice(item) }} 积分</text>
-            <u-button type="primary" size="small" shape="circle">兑换</u-button>
+            <u-button :type="canRedeem(item)?'primary':'default'" size="small" shape="circle" :disabled="redeemed[item.id]" @click="redeem(item)">{{ redeemed[item.id]?'已兑换':'立即兑换' }}</u-button>
           </view>
         </view>
       </view>
@@ -25,13 +25,23 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import SectionHeader from '../../components/SectionHeader.vue'
-import { userInfo as user } from '../../mock/user.js'
+import { userInfo as userInfo } from '../../mock/user.js'
 import { goodsList } from '../../mock/goods.js'
 
 const goods = ref(goodsList)
+const points = ref(userInfo.points)
+const redeemed = reactive({})
 const pointsPrice = (item) => Math.round((item.price || 20) * 100)
+const canRedeem = (item) => points.value >= pointsPrice(item)
+const redeem = (item) => {
+  const cost = pointsPrice(item)
+  if (!canRedeem(item)) { uni.showToast({ title: '积分不足', icon: 'none' }); return }
+  points.value -= cost
+  redeemed[item.id] = true
+  uni.showToast({ title: '兑换成功', icon: 'none' })
+}
 </script>
 
 <style lang="scss" scoped>

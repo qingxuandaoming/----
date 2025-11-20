@@ -10,7 +10,7 @@
       </view>
     </view>
     <view class="actions" @click.stop>
-      <u-button type="primary" shape="circle" size="small">加入购物车</u-button>
+      <u-button type="primary" shape="circle" size="small" @click="addToCart">加入购物车</u-button>
     </view>
   </view>
 </template>
@@ -21,6 +21,14 @@ const props = defineProps({
 })
 const goDetail = () => {
   uni.navigateTo({ url: `/pages/goods/detail?id=${props.item.id}` })
+}
+const addToCart = () => {
+  const cart = uni.getStorageSync('cart') || []
+  const idx = cart.findIndex(i => i.goodsId === props.item.id)
+  if (idx >= 0) cart[idx].quantity += 1
+  else cart.push({ id: Date.now(), goodsId: props.item.id, name: props.item.name, price: props.item.price || 0, quantity: 1, image: props.item.image })
+  uni.setStorageSync('cart', cart)
+  uni.showToast({ title: '已加入购物车', icon: 'none' })
 }
 </script>
 

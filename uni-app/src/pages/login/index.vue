@@ -31,6 +31,12 @@
         <text @click="toRegister">新用户注册</text>
       </view>
 
+      <view class="agree">
+        <u-checkbox v-model="agree">我已阅读并同意《用户协议》</u-checkbox>
+      </view>
+
+      <u-button class="guest-btn" shape="circle" plain @click="skip">随便看看</u-button>
+
       <view class="oauth">
         <image class="oauth-icon" src="https://img.icons8.com/fluency/48/wechat.png" />
         <image class="oauth-icon" src="https://img.icons8.com/color/48/alipay.png" />
@@ -45,6 +51,7 @@ import { ref } from 'vue'
 const form = ref({ mobile: '', code: '' })
 const countdown = ref(0)
 let timer = null
+const agree = ref(false)
 
 const sendCode = () => {
   if (countdown.value > 0) return
@@ -63,16 +70,16 @@ const sendCode = () => {
 }
 
 const login = () => {
-  if (!form.value.mobile || !form.value.code) {
-    uni.showToast({ title: '请填写完整信息', icon: 'none' })
-    return
-  }
+  if (!/^1\d{10}$/.test(form.value.mobile)) { uni.showToast({ title: '请输入正确手机号', icon: 'none' }); return }
+  if (form.value.code !== '1234') { uni.showToast({ title: '验证码错误，请输入1234', icon: 'none' }); return }
+  if (!agree.value) { uni.showToast({ title: '请勾选用户协议', icon: 'none' }); return }
   uni.showLoading({ title: '登录中' })
   setTimeout(() => {
     uni.hideLoading()
-    uni.switchTab({ url: '/pages/index/index' })
+    uni.switchTab({ url: '/pages/tabbar/home/index' })
   }, 800)
 }
+const skip = () => uni.switchTab({ url: '/pages/tabbar/home/index' })
 
 const toForgot = () => uni.showToast({ title: '敬请期待', icon: 'none' })
 const toRegister = () => uni.showToast({ title: '敬请期待', icon: 'none' })
@@ -93,4 +100,6 @@ const toRegister = () => uni.showToast({ title: '敬请期待', icon: 'none' })
 .links { display: flex; gap: 12rpx; color: $text-secondary; }
 .oauth { margin-top: 20rpx; display: flex; gap: 24rpx; }
 .oauth-icon { width: 48rpx; height: 48rpx; }
+.agree { margin-top: 12rpx; width: 88%; display: flex; }
+.guest-btn { margin-top: 12rpx; width: 88%; }
 </style>

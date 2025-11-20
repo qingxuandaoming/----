@@ -31,9 +31,9 @@ const toTongueScan = () => uni.navigateTo({ url: '/pages/test/tongue-scan' })
 </script>
 
 <style lang="scss" scoped>
-.test-home { padding: 24rpx; display: flex; flex-direction: column; gap: 24rpx; }
-.card { background-color: $color-card-bg; border-radius: $radius-card; padding: 24rpx; display: flex; flex-direction: column; gap: 16rpx; }
-.title { font-family: $font-title; font-size: 36rpx; color: $text-primary; }
+.test-home { padding: 24rpx; display: flex; flex-direction: column; gap: 20rpx; }
+.card { background-color: $color-card-bg; border-radius: $radius-card; padding: 24rpx; display: flex; flex-direction: column; gap: 12rpx; }
+.title { font-size: 34rpx; color: $text-primary; font-weight: 700; }
 .desc { color: $text-secondary; }
 .entry { display: flex; gap: 12rpx; }
 .history { display: flex; flex-direction: column; gap: 12rpx; }

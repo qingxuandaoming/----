@@ -2,7 +2,7 @@
   <view class="home">
     <view class="top-bar">
       <text class="logo" @click="toCategory">分类</text>
-      <u-search v-model="keyword" placeholder="搜索药膳食材/养生方案" :show-action="false" shape="round" bgColor="#FDF6E3" />
+      <u-search v-model="keyword" placeholder="搜索药膳食材/养生方案" :show-action="false" shape="round" bgColor="#FDF6E3" @focus="toSearch" />
       <view class="top-actions">
         <text class="link" @click="toProfile">我的</text>
         <text class="link" @click="toService">客服</text>
@@ -20,7 +20,7 @@
     <view class="hot-list">
       <SectionHeader title="热门生膳套餐" />
       <view class="list">
-        <ProductCard v-for="item in goods" :key="item.id" :item="item" />
+        <ProductCard v-for="item in goodsFiltered" :key="item.id" :item="item" />
       </view>
     </view>
   </view>
@@ -37,11 +37,12 @@ const currentTab = ref(0)
 const onTabChange = (e) => {
   currentTab.value = typeof e === 'number' ? e : e.index
 }
-const toCategory = () => uni.switchTab({ url: '/pages/category/index' })
-const toProfile = () => uni.switchTab({ url: '/pages/profile/index' })
+const toCategory = () => uni.switchTab({ url: '/pages/tabbar/category/index' })
+const toProfile = () => uni.switchTab({ url: '/pages/tabbar/profile/index' })
+const toSearch = () => uni.navigateTo({ url: '/pages/common/search' })
 const toService = () => {
   uni.showActionSheet({ itemList: ['在线客服', '拨打电话 400-123-456'], success(res){
-    if (res.tapIndex === 0) uni.navigateTo({ url: '/pages/profile/index' })
+    if (res.tapIndex === 0) uni.switchTab({ url: '/pages/tabbar/profile/index' })
     if (res.tapIndex === 1) uni.makePhoneCall({ phoneNumber: '400123456' })
   } })
 }
@@ -59,6 +60,11 @@ const banners = ref([
   { image: 'https://picsum.photos/seed/summer/800/400', title: '夏季滋阴' }
 ])
 const goods = ref(goodsList)
+const goodsFiltered = computed(() => {
+  const name = tabs.value[currentTab.value]?.name
+  if (!name) return goods.value
+  return goods.value.filter(g => (g.tags||[]).includes(name))
+})
 </script>
 
 <style lang="scss" scoped>
