@@ -16,7 +16,7 @@ import CartPage from './pages/cart/index.vue'
 import ProfilePage from './pages/profile/index.vue'
 import VipPage from './pages/vip/index.vue'
 
-const hasUniRuntime = typeof window !== 'undefined' && typeof window.uni !== 'undefined' && typeof window.__uniRoutes !== 'undefined'
+const hasUniRuntime = typeof window !== 'undefined' && typeof window.__uniRoutes !== 'undefined'
 
 const route = ref((typeof location !== 'undefined' && location.hash ? location.hash.slice(1) : '/pages/index/index'))
 const routesMap = {

@@ -22,7 +22,7 @@ export default defineConfig({
           vueOptions: {
             template: {
               compilerOptions: {
-                isCustomElement: (tag) => ['scroll-view', 'swiper', 'swiper-item'].includes(tag)
+                isCustomElement: (tag) => ['view', 'text', 'image', 'scroll-view', 'swiper', 'swiper-item'].includes(tag)
               }
             }
           }
@@ -34,12 +34,16 @@ export default defineConfig({
   },
   server: {
     port: 5501,
-    host: true
+    host: true,
+    headers: {
+      'X-Content-Type-Options': 'nosniff'
+    }
   },
   css: {
     preprocessorOptions: {
       scss: {
-        quietDeps: true
+        quietDeps: true,
+        additionalData: '@import "uview-plus/theme.scss";'
       }
     }
   }

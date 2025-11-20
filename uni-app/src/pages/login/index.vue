@@ -11,11 +11,11 @@
 
       <u-form :model="form" class="form">
         <u-form-item>
-          <u-input v-model="form.mobile" type="number" placeholder="请输入手机号" border="none" inputAlign="center" />
+          <u-input id="mobile" name="mobile" v-model="form.mobile" type="number" placeholder="请输入手机号" border="none" inputAlign="center" />
         </u-form-item>
         <u-form-item>
           <view class="row">
-            <u-input v-model="form.code" type="number" placeholder="请输入验证码" border="none" />
+            <u-input id="code" name="code" v-model="form.code" type="number" placeholder="请输入验证码" border="none" />
             <u-button class="ghost" size="small" plain @click="sendCode" :disabled="countdown>0">
               {{ countdown>0 ? `${countdown}s` : '获取验证码' }}
             </u-button>

@@ -20,6 +20,8 @@ body {
   background-color: $color-bg;
   color: $text-primary;
   font-family: $font-base;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .capsule-button {
