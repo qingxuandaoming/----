@@ -1,6 +1,6 @@
 <template>
   <view class="product-card" @click="goDetail">
-    <image :src="item.image" class="thumb" mode="aspectFill"></image>
+    <img :src="item.image" :alt="item.name" class="thumb" />
     <view class="info">
       <text class="name">{{ item.name }}</text>
       <text class="desc">{{ item.desc }}</text>
@@ -36,7 +36,7 @@ const addToCart = () => {
 .product-card {
   display: flex;
   align-items: center;
-  gap: 20rpx;
+  gap: 24rpx;
   padding: 24rpx;
   background-color: $color-card-bg;
   border-radius: $radius-card;
@@ -44,16 +44,26 @@ const addToCart = () => {
   box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
 }
 .product-card:active { transform: scale(0.98); box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06); }
-.thumb { width: 160rpx; height: 160rpx; border-radius: 16rpx; }
+.thumb {
+  width: 160rpx;
+  height: 160rpx;
+  min-width: 160rpx;
+  border-radius: 16rpx;
+  object-fit: cover;
+  display: block;
+  background-color: #f5f5f5;
+}
 .info {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 12rpx;
+  min-width: 0;
 }
 .name {
   font-size: 30rpx;
   color: $text-primary;
+  font-weight: 500;
 }
 .desc {
   font-size: 24rpx;
@@ -67,9 +77,10 @@ const addToCart = () => {
 .price {
   color: $text-danger;
   font-weight: 600;
+  font-size: 30rpx;
 }
 .tag { font-size: 22rpx; color: $text-secondary; border: 1rpx solid #ddd; padding: 6rpx 10rpx; border-radius: 20rpx; }
 .actions {
+  flex-shrink: 0;
 }
-.btn-add { background-color: $color-primary; color: #fff; border: none; padding: 12rpx 20rpx; border-radius: $radius-button; }
 </style>

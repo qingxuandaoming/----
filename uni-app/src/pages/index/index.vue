@@ -23,8 +23,37 @@
       <u-tabs :list="tabs" :current="currentTab" @change="onTabChange" lineColor="#8B5A2B" :scrollable="true" />
     </view>
 
-    <view class="banner">
-      <u-swiper class="swiper" :list="banners" keyName="image" circular autoplay indicator height="300rpx" radius="20" />
+    <!-- Banner carousel - center stage with side previews -->
+    <view class="carousel-outer">
+      <view class="carousel-track">
+        <view
+          v-for="(item, idx) in banners"
+          :key="idx"
+          class="carousel-card"
+          :class="{
+            'carousel-card--active': idx === currentBanner,
+            'carousel-card--prev': idx === prevBanner,
+            'carousel-card--next': idx === nextBanner,
+            'carousel-card--hidden': idx !== currentBanner && idx !== prevBanner && idx !== nextBanner
+          }"
+          @click="onCardClick(idx)"
+        >
+          <img
+            :src="item.image"
+            :alt="item.title"
+            class="carousel-card__img"
+          />
+        </view>
+      </view>
+      <view class="carousel-dots">
+        <view
+          v-for="(item, idx) in banners"
+          :key="'dot-'+idx"
+          class="carousel-dot"
+          :class="{ 'carousel-dot--active': idx === currentBanner }"
+          @click="goTo(idx)"
+        />
+      </view>
     </view>
 
     <view class="hot-list">
@@ -37,7 +66,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import SectionHeader from '../../components/SectionHeader.vue'
 import ProductCard from '../../components/ProductCard.vue'
 import { goodsList } from '../../mock/goods.js'
@@ -75,6 +104,32 @@ const banners = ref([
   { image: banner2, title: '膳食平衡' },
   { image: banner3, title: '清爽茶饮' }
 ])
+
+// Auto-rotate banner
+const currentBanner = ref(0)
+let bannerTimer = null
+const startBannerTimer = () => {
+  if (bannerTimer) clearInterval(bannerTimer)
+  bannerTimer = setInterval(() => {
+    currentBanner.value = (currentBanner.value + 1) % banners.value.length
+  }, 4000)
+}
+onMounted(() => startBannerTimer())
+onUnmounted(() => { if (bannerTimer) clearInterval(bannerTimer) })
+
+const prevBanner = computed(() => (currentBanner.value - 1 + banners.value.length) % banners.value.length)
+const nextBanner = computed(() => (currentBanner.value + 1) % banners.value.length)
+
+const goTo = (idx) => {
+  currentBanner.value = idx
+  startBannerTimer()
+}
+const onCardClick = (idx) => {
+  if (idx !== currentBanner.value) {
+    goTo(idx)
+  }
+}
+
 const goods = ref(goodsList)
 const goodsFiltered = computed(() => {
   const name = tabs.value[currentTab.value]?.name
@@ -104,7 +159,7 @@ const goodsFiltered = computed(() => {
 /* #endif */
 
 .home {
-  padding: 32rpx 24rpx;
+  padding: 32rpx 0;
   box-sizing: border-box;
   background-color: #FAFAFA;
   min-height: calc(100vh - var(--window-top) - var(--window-bottom));
@@ -132,14 +187,82 @@ const goodsFiltered = computed(() => {
 .category-tabs {
   margin: 20rpx 0;
 }
-.tabs { white-space: nowrap; }
-.banner {
-  margin-bottom: 30rpx;
-  box-shadow: 0 4rpx 12rpx rgba(139, 90, 43, 0.08);
-  border-radius: 20rpx;
+/* Carousel – center stage with side previews */
+.carousel-outer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 16rpx 40rpx 24rpx;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
 }
-.swiper { height: 300rpx; border-radius: 20rpx; overflow: hidden; }
-.banner-img { width: 100%; height: 100%; }
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 320rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-card {
+  position: absolute;
+  width: 54%;
+  height: 100%;
+  border-radius: 20rpx;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(.4,0,.2,1), opacity 0.4s ease;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.12);
+  cursor: pointer;
+  z-index: 1;
+}
+.carousel-card--active {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  z-index: 3;
+}
+.carousel-card--prev {
+  transform: translateX(-52%) scale(0.8);
+  opacity: 0.5;
+  z-index: 2;
+}
+.carousel-card--next {
+  transform: translateX(52%) scale(0.8);
+  opacity: 0.5;
+  z-index: 2;
+}
+.carousel-card--hidden {
+  transform: translateX(0) scale(0.7);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.carousel-card__img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 20rpx;
+  object-fit: cover;
+}
+/* Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12rpx;
+  margin-top: 16rpx;
+}
+.carousel-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: rgba(139,90,43,0.25);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.carousel-dot--active {
+  width: 36rpx;
+  border-radius: 7rpx;
+  background: #8B5A2B;
+}
 .hot-list {
   display: flex;
   flex-direction: column;
