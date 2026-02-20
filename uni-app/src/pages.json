@@ -1,4 +1,4 @@
-{ 
+{
   "pages": [
     {
       "path": "pages/tabbar/home/index",
@@ -125,7 +125,27 @@
         "navigationBarTextStyle": "black",
         "backgroundColor": "#FDF6E3"
       }
+    },
+    // #ifdef H5
+    {
+      "path": "pages/web/download",
+      "style": {
+        "navigationBarTitleText": "应用下载",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
+    },
+    {
+      "path": "pages/web/about",
+      "style": {
+        "navigationBarTitleText": "关于我们",
+        "navigationBarBackgroundColor": "#FDF6E3",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#FDF6E3"
+      }
     }
+    // #endif
   ],
   "easycom": {
     "autoscan": true,
