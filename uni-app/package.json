@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev:h5": "vite",
+    "dev:h5": "uni dev -p h5",
     "dev:h5:fast": "vite --config vite.config.h5.js",
-    "build:h5": "vite build",
+    "build:h5": "uni build -p h5",
     "dev:app-android": "uni dev -p app-android",
     "build:app-android": "uni build -p app-android"
   },

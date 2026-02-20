@@ -1,9 +1,18 @@
+import img1 from '@/static/tcm_soup1.png'
+import img2 from '@/static/tcm_soup2.png'
+import img3 from '@/static/tcm_soup3.png'
+import img4 from '@/static/tcm_porridge1.png'
+import img5 from '@/static/tcm_cake1.png'
+import img6 from '@/static/tcm_tea1.png'
+import img7 from '@/static/tcm_porridge2.png'
+import img8 from '@/static/tcm_cake2.png'
+
 export const goodsList = [
   {
     id: 1,
     name: "滋阴润燥汤",
     price: 20.0,
-    image: "https://picsum.photos/seed/soup1/300/300",
+    image: img1,
     desc: "功效：滋阴润燥，适合秋季",
     tags: ["滋阴润燥"],
     ingredients: [
@@ -16,7 +25,7 @@ export const goodsList = [
     id: 2,
     name: "黄芪党参炖鸡汤",
     price: 20.0,
-    image: "https://picsum.photos/seed/soup2/300/300",
+    image: img2,
     desc: "功效：大补元气",
     tags: ["补气养血"],
     sales: 120
@@ -25,7 +34,7 @@ export const goodsList = [
     id: 3,
     name: "绿豆百合汤",
     price: 16.8,
-    image: "https://picsum.photos/seed/soup3/300/300",
+    image: img3,
     desc: "功效：清热祛湿，适合湿热体质",
     tags: ["清热降火", "清热"],
     sales: 88
@@ -34,7 +43,7 @@ export const goodsList = [
     id: 4,
     name: "红枣桂圆燕麦粥",
     price: 14.8,
-    image: "https://images.unsplash.com/photo-1554009975-a4a06d2adf76?auto=format&fit=crop&w=300&q=60",
+    image: img4,
     desc: "功效：温补养血，健脾和胃",
     tags: ["粥膳", "补气养血", "健脾养胃"],
     sales: 76
@@ -43,7 +52,7 @@ export const goodsList = [
     id: 5,
     name: "百合银耳糕",
     price: 12.6,
-    image: "https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=300&q=60",
+    image: img5,
     desc: "功效：滋阴润燥，清润不腻",
     tags: ["糕点", "滋阴润燥"],
     sales: 64
@@ -52,7 +61,7 @@ export const goodsList = [
     id: 6,
     name: "菊花枸杞茶",
     price: 9.9,
-    image: "https://images.unsplash.com/photo-1519092795486-a0460b9e01c5?auto=format&fit=crop&w=300&q=60",
+    image: img6,
     desc: "功效：清热明目，缓解疲劳",
     tags: ["清热"],
     sales: 132
@@ -61,7 +70,7 @@ export const goodsList = [
     id: 7,
     name: "山药南瓜粥",
     price: 16.0,
-    image: "https://images.unsplash.com/photo-1448043552756-3e5f6c303f48?auto=format&fit=crop&w=300&q=60",
+    image: img7,
     desc: "功效：健脾养胃，补中益气",
     tags: ["粥膳", "健脾养胃"],
     sales: 58
@@ -70,7 +79,7 @@ export const goodsList = [
     id: 8,
     name: "红豆薏米糕",
     price: 13.8,
-    image: "https://images.unsplash.com/photo-1512058457630-3a43f2856e59?auto=format&fit=crop&w=300&q=60",
+    image: img8,
     desc: "功效：健脾祛湿，清爽可口",
     tags: ["糕点", "健脾养胃"],
     sales: 82

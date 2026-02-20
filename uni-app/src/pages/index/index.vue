@@ -56,6 +56,10 @@ const toService = () => {
 // #ifdef H5
 const toWebHome = () => uni.navigateTo({ url: '/pages/web/index' })
 // #endif
+import dietBannerImage from '@/static/tcm_diet_banner.png'
+import bannerBalance from '@/static/tcm_banner_balance.png'
+import bannerTea from '@/static/tcm_banner_tea.png'
+
 const tabs = ref([
   { name: '补气养血' },
   { name: '健脾养胃' },
@@ -65,9 +69,9 @@ const tabs = ref([
   { name: '润肺止咳' }
 ])
 const banners = ref([
-  { image: '/illustration-health.svg', title: '健康管理' },
-  { image: 'https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=1200&q=60', title: '膳食平衡' },
-  { image: 'https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=1200&q=60', title: '清爽茶饮' }
+  { image: dietBannerImage, title: '健康管理' },
+  { image: bannerBalance, title: '膳食平衡' },
+  { image: bannerTea, title: '清爽茶饮' }
 ])
 const goods = ref(goodsList)
 const goodsFiltered = computed(() => {
@@ -88,6 +92,7 @@ const goodsFiltered = computed(() => {
   border-radius: 12rpx;
   margin-bottom: 20rpx;
   cursor: pointer;
+  box-sizing: border-box;
 }
 .banner-text {
   font-size: 26rpx;
@@ -98,6 +103,8 @@ const goodsFiltered = computed(() => {
 
 .home {
   padding: 24rpx;
+  box-sizing: border-box;
+  min-height: calc(100vh - var(--window-top) - var(--window-bottom));
 }
 .top-bar {
   display: flex;

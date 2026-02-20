@@ -66,7 +66,6 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern-compiler',
         quietDeps: true,
         silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'],
         additionalData: '@import "uview-plus/theme.scss";'
