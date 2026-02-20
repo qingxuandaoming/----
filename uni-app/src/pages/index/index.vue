@@ -7,11 +7,15 @@
     </view>
     <!-- #endif -->
     <view class="top-bar">
-      <text class="logo" @click="toCategory">分类</text>
-      <u-search v-model="keyword" placeholder="搜索药膳食材/养生方案" :show-action="false" shape="round" bgColor="#FDF6E3" @focus="toSearch" />
+      <view class="logo" @click="toCategory">
+        <u-icon name="grid" color="#8B5A2B" size="26"></u-icon>
+      </view>
+      <view class="search">
+        <u-search v-model="keyword" placeholder="搜索药膳食材/养生方案" :show-action="false" shape="round" bgColor="#FDF6E3" @focus="toSearch" />
+      </view>
       <view class="top-actions">
-        <text class="link" @click="toProfile">我的</text>
-        <text class="link" @click="toService">客服</text>
+        <u-icon name="account" color="#8B5A2B" size="28" @click="toProfile"></u-icon>
+        <u-icon name="server-man" color="#8B5A2B" size="28" @click="toService"></u-icon>
       </view>
     </view>
 
@@ -20,7 +24,7 @@
     </view>
 
     <view class="banner">
-      <u-swiper class="swiper" :list="banners" keyName="image" circular autoplay indicator :height="360" radius="20" />
+      <u-swiper class="swiper" :list="banners" keyName="image" circular autoplay indicator height="300rpx" radius="20" />
     </view>
 
     <view class="hot-list">
@@ -50,6 +54,9 @@ const toService = () => {
   uni.showActionSheet({ itemList: ['在线客服', '拨打电话 400-123-456'], success(res){
     if (res.tapIndex === 0) uni.switchTab({ url: '/pages/tabbar/profile/index' })
     if (res.tapIndex === 1) uni.makePhoneCall({ phoneNumber: '400123456' })
+  } })
+}
+
 const tabs = ref([
   { name: '补气养血' },
   { name: '健脾养胃' },
@@ -58,10 +65,15 @@ const tabs = ref([
   { name: '安神助眠' },
   { name: '润肺止咳' }
 ])
+
+import banner1 from '../../static/tcm_diet_banner.png'
+import banner2 from '../../static/tcm_banner_balance.png'
+import banner3 from '../../static/tcm_banner_tea.png'
+
 const banners = ref([
-  { image: '/static/tcm_diet_banner.png', title: '健康管理' },
-  { image: '/static/tcm_banner_balance.png', title: '膳食平衡' },
-  { image: '/static/tcm_banner_tea.png', title: '清爽茶饮' }
+  { image: banner1, title: '健康管理' },
+  { image: banner2, title: '膳食平衡' },
+  { image: banner3, title: '清爽茶饮' }
 ])
 const goods = ref(goodsList)
 const goodsFiltered = computed(() => {
@@ -92,31 +104,41 @@ const goodsFiltered = computed(() => {
 /* #endif */
 
 .home {
-  padding: 24rpx;
+  padding: 32rpx 24rpx;
   box-sizing: border-box;
+  background-color: #FAFAFA;
   min-height: calc(100vh - var(--window-top) - var(--window-bottom));
 }
 .top-bar {
   display: flex;
   align-items: center;
-  gap: 16rpx;
+  gap: 20rpx;
+  margin-bottom: 12rpx;
 }
-.logo { color: $color-primary; }
+.logo { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+  padding: 8rpx;
+}
 .search { flex: 1; }
 .top-actions {
   display: flex;
   align-items: center;
-  gap: 12rpx;
+  gap: 24rpx;
+  padding-left: 10rpx;
 }
-.link { color: $color-primary; }
 .category-tabs {
   margin: 20rpx 0;
 }
 .tabs { white-space: nowrap; }
 .banner {
-  margin-bottom: 24rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(139, 90, 43, 0.08);
+  border-radius: 20rpx;
 }
-.swiper { height: 360rpx; border-radius: 20rpx; overflow: hidden; }
+.swiper { height: 300rpx; border-radius: 20rpx; overflow: hidden; }
 .banner-img { width: 100%; height: 100%; }
 .hot-list {
   display: flex;
