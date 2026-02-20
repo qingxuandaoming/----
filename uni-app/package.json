@@ -10,14 +10,35 @@
     "build:app-android": "uni build -p app-android"
   },
   "dependencies": {
-    "@dcloudio/uni-components": "^3.0.0-alpha-3000020210521001",
+    "@dcloudio/uni-app": "3.0.0-4080520251106001",
+    "@dcloudio/uni-app-harmony": "3.0.0-4080520251106001",
+    "@dcloudio/uni-app-plus": "3.0.0-4080520251106001",
+    "@dcloudio/uni-components": "3.0.0-4080520251106001",
+    "@dcloudio/uni-h5": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-alipay": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-baidu": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-harmony": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-jd": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-kuaishou": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-lark": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-qq": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-toutiao": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-weixin": "3.0.0-4080520251106001",
+    "@dcloudio/uni-mp-xhs": "3.0.0-4080520251106001",
+    "@dcloudio/uni-quickapp-webview": "3.0.0-4080520251106001",
     "uview-plus": "^3.1.23",
-    "vue": "^3.4.21"
+    "vue": "3.4.21",
+    "vue-i18n": "9.14.5"
   },
   "devDependencies": {
-    "@dcloudio/vite-plugin-uni": "3.0.0-alpha-4050720250320001",
+    "@dcloudio/types": "3.4.19",
+    "@dcloudio/uni-automator": "3.0.0-4080520251106001",
+    "@dcloudio/uni-cli-shared": "3.0.0-4080520251106001",
+    "@dcloudio/uni-stacktracey": "3.0.0-4080520251106001",
+    "@dcloudio/vite-plugin-uni": "3.0.0-4080520251106001",
     "@vue/compiler-sfc": "^3.4.21",
+    "@vue/runtime-core": "3.5.24",
     "sass": "^1.77.0",
-    "vite": "^5.2.8"
+    "vite": "5.2.8"
   }
 }

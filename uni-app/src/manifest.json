@@ -1,8 +1,15 @@
 {
-  "name": "辨体施膳",
-  "appid": "com.example.btss",
-  "description": "",
-  "versionName": "0.1.0",
-  "versionCode": "100",
-  "transformPx": true
+    "name" : "辨体施膳",
+    "appid" : "__UNI__E739AAE",
+    "description" : "",
+    "versionName" : "0.1.0",
+    "versionCode" : "100",
+    "transformPx" : true,
+    "app-plus" : {
+        "distribute" : {
+            "ios" : {
+                "dSYMs" : false
+            }
+        }
+    }
 }
