@@ -68,9 +68,8 @@
 import { ref } from 'vue'
 import SectionHeader from '../../components/SectionHeader.vue'
 import { userInfo as user } from '../../mock/user.js'
-import profileBgImage from '@/static/tcm_profile_bg.png'
 
-const profileBg = ref(profileBgImage)
+const profileBg = ref('/static/tcm_profile_bg.png')
 const toLogin = () => uni.navigateTo({ url: '/pages/login/login' })
 const toVIP = () => uni.navigateTo({ url: '/pages/marketing/vip-center' })
 const toPoints = () => uni.navigateTo({ url: '/pages/points/index' })

@@ -56,9 +56,8 @@
 <script setup>
 import { ref } from 'vue'
 import SectionHeader from '../../../components/SectionHeader.vue'
-import testBanner from '@/static/tcm_test_banner.png'
 
-const testBannerImage = ref(testBanner)
+const testBannerImage = ref('/static/tcm_test_banner.png')
 const history = ref(uni.getStorageSync('test_history') || [
   { date: '2026-02-18', result: '气虚质' },
   { date: '2026-01-05', result: '平和质' }

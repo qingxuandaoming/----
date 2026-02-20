@@ -50,16 +50,6 @@ const toService = () => {
   uni.showActionSheet({ itemList: ['在线客服', '拨打电话 400-123-456'], success(res){
     if (res.tapIndex === 0) uni.switchTab({ url: '/pages/tabbar/profile/index' })
     if (res.tapIndex === 1) uni.makePhoneCall({ phoneNumber: '400123456' })
-  } })
-}
-
-// #ifdef H5
-const toWebHome = () => uni.navigateTo({ url: '/pages/web/index' })
-// #endif
-import dietBannerImage from '@/static/tcm_diet_banner.png'
-import bannerBalance from '@/static/tcm_banner_balance.png'
-import bannerTea from '@/static/tcm_banner_tea.png'
-
 const tabs = ref([
   { name: '补气养血' },
   { name: '健脾养胃' },
@@ -69,9 +59,9 @@ const tabs = ref([
   { name: '润肺止咳' }
 ])
 const banners = ref([
-  { image: dietBannerImage, title: '健康管理' },
-  { image: bannerBalance, title: '膳食平衡' },
-  { image: bannerTea, title: '清爽茶饮' }
+  { image: '/static/tcm_diet_banner.png', title: '健康管理' },
+  { image: '/static/tcm_banner_balance.png', title: '膳食平衡' },
+  { image: '/static/tcm_banner_tea.png', title: '清爽茶饮' }
 ])
 const goods = ref(goodsList)
 const goodsFiltered = computed(() => {

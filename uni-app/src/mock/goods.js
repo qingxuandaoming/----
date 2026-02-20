@@ -1,18 +1,9 @@
-import img1 from '@/static/tcm_soup1.png'
-import img2 from '@/static/tcm_soup2.png'
-import img3 from '@/static/tcm_soup3.png'
-import img4 from '@/static/tcm_porridge1.png'
-import img5 from '@/static/tcm_cake1.png'
-import img6 from '@/static/tcm_tea1.png'
-import img7 from '@/static/tcm_porridge2.png'
-import img8 from '@/static/tcm_cake2.png'
-
 export const goodsList = [
   {
     id: 1,
     name: "滋阴润燥汤",
     price: 20.0,
-    image: img1,
+    image: "/static/tcm_soup1.png",
     desc: "功效：滋阴润燥，适合秋季",
     tags: ["滋阴润燥"],
     ingredients: [
@@ -25,7 +16,7 @@ export const goodsList = [
     id: 2,
     name: "黄芪党参炖鸡汤",
     price: 20.0,
-    image: img2,
+    image: "/static/tcm_soup2.png",
     desc: "功效：大补元气",
     tags: ["补气养血"],
     sales: 120
@@ -34,7 +25,7 @@ export const goodsList = [
     id: 3,
     name: "绿豆百合汤",
     price: 16.8,
-    image: img3,
+    image: "/static/tcm_soup3.png",
     desc: "功效：清热祛湿，适合湿热体质",
     tags: ["清热降火", "清热"],
     sales: 88
@@ -43,7 +34,7 @@ export const goodsList = [
     id: 4,
     name: "红枣桂圆燕麦粥",
     price: 14.8,
-    image: img4,
+    image: "/static/tcm_porridge1.png",
     desc: "功效：温补养血，健脾和胃",
     tags: ["粥膳", "补气养血", "健脾养胃"],
     sales: 76
@@ -52,7 +43,7 @@ export const goodsList = [
     id: 5,
     name: "百合银耳糕",
     price: 12.6,
-    image: img5,
+    image: "/static/tcm_cake1.png",
     desc: "功效：滋阴润燥，清润不腻",
     tags: ["糕点", "滋阴润燥"],
     sales: 64
@@ -61,7 +52,7 @@ export const goodsList = [
     id: 6,
     name: "菊花枸杞茶",
     price: 9.9,
-    image: img6,
+    image: "/static/tcm_tea1.png",
     desc: "功效：清热明目，缓解疲劳",
     tags: ["清热"],
     sales: 132
@@ -70,7 +61,7 @@ export const goodsList = [
     id: 7,
     name: "山药南瓜粥",
     price: 16.0,
-    image: img7,
+    image: "/static/tcm_porridge2.png",
     desc: "功效：健脾养胃，补中益气",
     tags: ["粥膳", "健脾养胃"],
     sales: 58
@@ -79,7 +70,7 @@ export const goodsList = [
     id: 8,
     name: "红豆薏米糕",
     price: 13.8,
-    image: img8,
+    image: "/static/tcm_cake2.png",
     desc: "功效：健脾祛湿，清爽可口",
     tags: ["糕点", "健脾养胃"],
     sales: 82
