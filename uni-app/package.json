@@ -39,6 +39,7 @@
     "@dcloudio/vite-plugin-uni": "3.0.0-4080720251210001",
     "@vue/compiler-sfc": "^3.4.21",
     "@vue/runtime-core": "3.5.28",
+    "baseline-browser-mapping": "^2.10.0",
     "sass": "^1.97.3",
     "vite": "5.2.8"
   }
