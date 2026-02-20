@@ -1,5 +1,11 @@
 <template>
   <view class="home">
+    <!-- #ifdef H5 -->
+    <view class="official-web-banner" @click="toWebHome">
+      <text class="banner-text">欢迎访问辨体施膳官网，了解更多</text>
+      <u-icon name="arrow-right" color="#8B5A2B" size="14"></u-icon>
+    </view>
+    <!-- #endif -->
     <view class="top-bar">
       <text class="logo" @click="toCategory">分类</text>
       <u-search v-model="keyword" placeholder="搜索药膳食材/养生方案" :show-action="false" shape="round" bgColor="#FDF6E3" @focus="toSearch" />
@@ -46,6 +52,10 @@ const toService = () => {
     if (res.tapIndex === 1) uni.makePhoneCall({ phoneNumber: '400123456' })
   } })
 }
+
+// #ifdef H5
+const toWebHome = () => uni.navigateTo({ url: '/pages/web/index' })
+// #endif
 const tabs = ref([
   { name: '补气养血' },
   { name: '健脾养胃' },
@@ -68,6 +78,24 @@ const goodsFiltered = computed(() => {
 </script>
 
 <style lang="scss" scoped>
+/* #ifdef H5 */
+.official-web-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #FDF6E3 0%, #EFE1C6 100%);
+  padding: 16rpx 24rpx;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  cursor: pointer;
+}
+.banner-text {
+  font-size: 26rpx;
+  color: #8B5A2B;
+  font-weight: 500;
+}
+/* #endif */
+
 .home {
   padding: 24rpx;
 }

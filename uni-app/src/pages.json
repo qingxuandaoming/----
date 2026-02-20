@@ -128,6 +128,13 @@
     },
     // #ifdef H5
     {
+      "path": "pages/web/index",
+      "style": {
+        "navigationBarTitleText": "辨体施膳官网",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/web/download",
       "style": {
         "navigationBarTitleText": "应用下载",
